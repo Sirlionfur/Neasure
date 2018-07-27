@@ -119,6 +119,7 @@
             this.MaximizeBox = false;
             this.Name = "Test";
             this.Text = "Neasure - Testing...";
+            this.Load += new System.EventHandler(this.Test_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

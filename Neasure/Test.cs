@@ -51,6 +51,8 @@ namespace Neasure
                             // Use the overload of WriteLine that accepts string format and arguments
                             Console.WriteLine("Ping at " + serverAdress + " - Status: " + reply.Status + " - Time: " + reply.RoundtripTime + " - Adress: " + reply.Address);
                             writer.WriteLine("{0};{1};{2};{3}", serverAdress, reply.Status, reply.RoundtripTime, reply.Address);
+
+                            //TODO Update Window
                         }
 
                         Thread.Sleep(pingInterval);
@@ -84,6 +86,16 @@ namespace Neasure
         {
             lblTestRunning.Text = "Your Test is Running...";
             startTest(serverAdress, pingInterval, mode);
+        }
+
+        private void updateWindow()
+        {
+            // Do stuff
+        }
+
+        private void Test_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
