@@ -71,8 +71,6 @@ namespace Neasure
             var result = MessageBox.Show("All your Measurement Data will be Deletet\nDo you really want to Continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if(result == DialogResult.Yes)
             {
-                //TODO Messdaten Löschen
-
                 this.Close();
             }
         }
