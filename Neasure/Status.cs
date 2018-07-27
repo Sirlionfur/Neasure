@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace Neasure
 {
-    public partial class Main : Form
+    public partial class Status : Form
     {
-        public Main()
+        public Status()
         {
             InitializeComponent();
-        }
-
-        private void btnStart_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
