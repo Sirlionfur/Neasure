@@ -30,8 +30,6 @@
         {
             this.txtServerAdress = new System.Windows.Forms.TextBox();
             this.lblServerAdress = new System.Windows.Forms.Label();
-            this.lblServerPort = new System.Windows.Forms.Label();
-            this.txtServerPort = new System.Windows.Forms.TextBox();
             this.lblPingInterval = new System.Windows.Forms.Label();
             this.txtPingInterval = new System.Windows.Forms.TextBox();
             this.groupTestModes = new System.Windows.Forms.GroupBox();
@@ -58,22 +56,6 @@
             this.lblServerAdress.TabIndex = 1;
             this.lblServerAdress.Text = "Server Adress:";
             // 
-            // lblServerPort
-            // 
-            this.lblServerPort.AutoSize = true;
-            this.lblServerPort.Location = new System.Drawing.Point(385, 9);
-            this.lblServerPort.Name = "lblServerPort";
-            this.lblServerPort.Size = new System.Drawing.Size(63, 13);
-            this.lblServerPort.TabIndex = 2;
-            this.lblServerPort.Text = "Server Port:";
-            // 
-            // txtServerPort
-            // 
-            this.txtServerPort.Location = new System.Drawing.Point(454, 6);
-            this.txtServerPort.Name = "txtServerPort";
-            this.txtServerPort.Size = new System.Drawing.Size(66, 20);
-            this.txtServerPort.TabIndex = 3;
-            // 
             // lblPingInterval
             // 
             this.lblPingInterval.AutoSize = true;
@@ -95,7 +77,7 @@
             this.groupTestModes.Controls.Add(this.radioBtnExtremeTest);
             this.groupTestModes.Controls.Add(this.radioBtnLongTest);
             this.groupTestModes.Controls.Add(this.radioBtnShortTest);
-            this.groupTestModes.Location = new System.Drawing.Point(320, 45);
+            this.groupTestModes.Location = new System.Drawing.Point(179, 45);
             this.groupTestModes.Name = "groupTestModes";
             this.groupTestModes.Size = new System.Drawing.Size(200, 100);
             this.groupTestModes.TabIndex = 6;
@@ -149,13 +131,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(538, 167);
+            this.ClientSize = new System.Drawing.Size(405, 167);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.groupTestModes);
             this.Controls.Add(this.txtPingInterval);
             this.Controls.Add(this.lblPingInterval);
-            this.Controls.Add(this.txtServerPort);
-            this.Controls.Add(this.lblServerPort);
             this.Controls.Add(this.lblServerAdress);
             this.Controls.Add(this.txtServerAdress);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -173,8 +153,6 @@
 
         private System.Windows.Forms.TextBox txtServerAdress;
         private System.Windows.Forms.Label lblServerAdress;
-        private System.Windows.Forms.Label lblServerPort;
-        private System.Windows.Forms.TextBox txtServerPort;
         private System.Windows.Forms.Label lblPingInterval;
         private System.Windows.Forms.TextBox txtPingInterval;
         private System.Windows.Forms.GroupBox groupTestModes;

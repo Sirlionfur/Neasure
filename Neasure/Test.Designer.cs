@@ -34,6 +34,7 @@
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.btnStatus = new System.Windows.Forms.Button();
             this.btnAbort = new System.Windows.Forms.Button();
+            this.btnStart = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblTestRunning
@@ -42,9 +43,9 @@
             this.lblTestRunning.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTestRunning.Location = new System.Drawing.Point(12, 9);
             this.lblTestRunning.Name = "lblTestRunning";
-            this.lblTestRunning.Size = new System.Drawing.Size(291, 31);
+            this.lblTestRunning.Size = new System.Drawing.Size(244, 31);
             this.lblTestRunning.TabIndex = 0;
-            this.lblTestRunning.Text = "Your Test is Running...";
+            this.lblTestRunning.Text = "Press Start to Start";
             // 
             // lblRemainingTime
             // 
@@ -92,11 +93,22 @@
             this.btnAbort.UseVisualStyleBackColor = true;
             this.btnAbort.Click += new System.EventHandler(this.btnAbort_Click);
             // 
+            // btnStart
+            // 
+            this.btnStart.Location = new System.Drawing.Point(18, 133);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(285, 23);
+            this.btnStart.TabIndex = 6;
+            this.btnStart.Text = "Start";
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
             // Test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(317, 147);
+            this.ClientSize = new System.Drawing.Size(317, 165);
+            this.Controls.Add(this.btnStart);
             this.Controls.Add(this.btnAbort);
             this.Controls.Add(this.btnStatus);
             this.Controls.Add(this.progressBar);
@@ -120,5 +132,6 @@
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Button btnStatus;
         private System.Windows.Forms.Button btnAbort;
+        private System.Windows.Forms.Button btnStart;
     }
 }
