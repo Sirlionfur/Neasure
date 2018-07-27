@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblTestRunning = new System.Windows.Forms.Label();
             this.lblRemainingTime = new System.Windows.Forms.Label();
             this.lblTime = new System.Windows.Forms.Label();
@@ -36,6 +37,7 @@
             this.btnAbort = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
             this.backgroundWorkerPing = new System.ComponentModel.BackgroundWorker();
+            this.timerMode = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // lblTestRunning
@@ -108,6 +110,7 @@
             // 
             this.backgroundWorkerPing.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerPing_DoWork);
             this.backgroundWorkerPing.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerPing_ProgressChanged);
+            this.backgroundWorkerPing.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerPing_RunWorkerCompleted);
             // 
             // Test
             // 
@@ -140,5 +143,6 @@
         private System.Windows.Forms.Button btnAbort;
         private System.Windows.Forms.Button btnStart;
         private System.ComponentModel.BackgroundWorker backgroundWorkerPing;
+        private System.Windows.Forms.Timer timerMode;
     }
 }
