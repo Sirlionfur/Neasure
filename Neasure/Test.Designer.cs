@@ -35,6 +35,7 @@
             this.btnStatus = new System.Windows.Forms.Button();
             this.btnAbort = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
+            this.backgroundWorkerPing = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // lblTestRunning
@@ -103,6 +104,11 @@
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
+            // backgroundWorkerPing
+            // 
+            this.backgroundWorkerPing.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerPing_DoWork);
+            this.backgroundWorkerPing.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerPing_ProgressChanged);
+            // 
             // Test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -119,7 +125,6 @@
             this.MaximizeBox = false;
             this.Name = "Test";
             this.Text = "Neasure - Testing...";
-            this.Load += new System.EventHandler(this.Test_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -134,5 +139,6 @@
         private System.Windows.Forms.Button btnStatus;
         private System.Windows.Forms.Button btnAbort;
         private System.Windows.Forms.Button btnStart;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerPing;
     }
 }

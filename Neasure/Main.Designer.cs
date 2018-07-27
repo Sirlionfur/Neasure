@@ -121,9 +121,9 @@
             // 
             this.btnStart.Location = new System.Drawing.Point(12, 132);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(75, 23);
+            this.btnStart.Size = new System.Drawing.Size(132, 23);
             this.btnStart.TabIndex = 7;
-            this.btnStart.Text = "Start Test";
+            this.btnStart.Text = "Prepare Test";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 

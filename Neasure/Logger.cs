@@ -1,13 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 
 namespace Neasure
 {
     class Logger
     {
+        /* Currently Broken, Do not Use
+    
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool AllocConsole();
+
+        public Logger()
+        {
+            AllocConsole();
+        }
+
         public void Log(string msg)
         {
             Console.WriteLine("[LOG] " + msg);
@@ -22,5 +30,7 @@ namespace Neasure
         {
             Console.WriteLine("[ERROR] " + msg);
         }
+
+    */
     }
 }

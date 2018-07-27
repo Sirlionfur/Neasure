@@ -15,6 +15,11 @@ namespace Neasure
         public Main()
         {
             InitializeComponent();
+
+            //Logger logger = new Logger();
+            //logger.Log("test");
+            //logger.LogError("test");
+            //logger.LogWarning("test");
         }
 
         private void btnStart_Click(object sender, EventArgs e)
