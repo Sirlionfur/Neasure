@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net.NetworkInformation;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Neasure
@@ -32,6 +26,7 @@ namespace Neasure
             backgroundWorkerPing.DoWork += backgroundWorkerPing_DoWork;
             backgroundWorkerPing.ProgressChanged += backgroundWorkerPing_ProgressChanged;
             backgroundWorkerPing.WorkerReportsProgress = true;
+            backgroundWorkerPing.WorkerSupportsCancellation = true;
 
             // Set the Private Values to the Values given from the Main Form
             this.serverAdress = serverAdress;
@@ -45,6 +40,8 @@ namespace Neasure
             var result = MessageBox.Show("All your Measurement Data will be Deletet\nDo you really want to Continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
+                backgroundWorkerPing.CancelAsync();
+                Thread.Sleep(700);
                 this.Close();
             }
         }
