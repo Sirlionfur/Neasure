@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.txtServerAdress = new System.Windows.Forms.TextBox();
             this.lblServerAdress = new System.Windows.Forms.Label();
             this.lblPingInterval = new System.Windows.Forms.Label();
@@ -42,96 +43,65 @@
             // 
             // txtServerAdress
             // 
-            this.txtServerAdress.Location = new System.Drawing.Point(94, 6);
+            resources.ApplyResources(this.txtServerAdress, "txtServerAdress");
             this.txtServerAdress.Name = "txtServerAdress";
-            this.txtServerAdress.Size = new System.Drawing.Size(285, 20);
-            this.txtServerAdress.TabIndex = 0;
             // 
             // lblServerAdress
             // 
-            this.lblServerAdress.AutoSize = true;
-            this.lblServerAdress.Location = new System.Drawing.Point(12, 9);
+            resources.ApplyResources(this.lblServerAdress, "lblServerAdress");
             this.lblServerAdress.Name = "lblServerAdress";
-            this.lblServerAdress.Size = new System.Drawing.Size(76, 13);
-            this.lblServerAdress.TabIndex = 1;
-            this.lblServerAdress.Text = "Server Adress:";
             // 
             // lblPingInterval
             // 
-            this.lblPingInterval.AutoSize = true;
-            this.lblPingInterval.Location = new System.Drawing.Point(12, 45);
+            resources.ApplyResources(this.lblPingInterval, "lblPingInterval");
             this.lblPingInterval.Name = "lblPingInterval";
-            this.lblPingInterval.Size = new System.Drawing.Size(132, 13);
-            this.lblPingInterval.TabIndex = 4;
-            this.lblPingInterval.Text = "Ping Interval (In Seconds):";
             // 
             // txtPingInterval
             // 
-            this.txtPingInterval.Location = new System.Drawing.Point(15, 61);
+            resources.ApplyResources(this.txtPingInterval, "txtPingInterval");
             this.txtPingInterval.Name = "txtPingInterval";
-            this.txtPingInterval.Size = new System.Drawing.Size(59, 20);
-            this.txtPingInterval.TabIndex = 5;
             // 
             // groupTestModes
             // 
+            resources.ApplyResources(this.groupTestModes, "groupTestModes");
             this.groupTestModes.Controls.Add(this.radioBtnExtremeTest);
             this.groupTestModes.Controls.Add(this.radioBtnLongTest);
             this.groupTestModes.Controls.Add(this.radioBtnShortTest);
-            this.groupTestModes.Location = new System.Drawing.Point(179, 45);
             this.groupTestModes.Name = "groupTestModes";
-            this.groupTestModes.Size = new System.Drawing.Size(200, 100);
-            this.groupTestModes.TabIndex = 6;
             this.groupTestModes.TabStop = false;
-            this.groupTestModes.Text = "Test Modes:";
             // 
             // radioBtnExtremeTest
             // 
-            this.radioBtnExtremeTest.AutoSize = true;
-            this.radioBtnExtremeTest.Location = new System.Drawing.Point(6, 65);
+            resources.ApplyResources(this.radioBtnExtremeTest, "radioBtnExtremeTest");
             this.radioBtnExtremeTest.Name = "radioBtnExtremeTest";
-            this.radioBtnExtremeTest.Size = new System.Drawing.Size(129, 17);
-            this.radioBtnExtremeTest.TabIndex = 2;
             this.radioBtnExtremeTest.TabStop = true;
-            this.radioBtnExtremeTest.Text = "Extreme Test (7 Days)";
             this.radioBtnExtremeTest.UseVisualStyleBackColor = true;
             // 
             // radioBtnLongTest
             // 
-            this.radioBtnLongTest.AutoSize = true;
-            this.radioBtnLongTest.Location = new System.Drawing.Point(6, 42);
+            resources.ApplyResources(this.radioBtnLongTest, "radioBtnLongTest");
             this.radioBtnLongTest.Name = "radioBtnLongTest";
-            this.radioBtnLongTest.Size = new System.Drawing.Size(125, 17);
-            this.radioBtnLongTest.TabIndex = 1;
             this.radioBtnLongTest.TabStop = true;
-            this.radioBtnLongTest.Text = "Long Test (24 Hours)";
             this.radioBtnLongTest.UseVisualStyleBackColor = true;
             // 
             // radioBtnShortTest
             // 
-            this.radioBtnShortTest.AutoSize = true;
-            this.radioBtnShortTest.Location = new System.Drawing.Point(6, 19);
+            resources.ApplyResources(this.radioBtnShortTest, "radioBtnShortTest");
             this.radioBtnShortTest.Name = "radioBtnShortTest";
-            this.radioBtnShortTest.Size = new System.Drawing.Size(115, 17);
-            this.radioBtnShortTest.TabIndex = 0;
             this.radioBtnShortTest.TabStop = true;
-            this.radioBtnShortTest.Text = "Short Test (1 Hour)";
             this.radioBtnShortTest.UseVisualStyleBackColor = true;
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(12, 132);
+            resources.ApplyResources(this.btnStart, "btnStart");
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(132, 23);
-            this.btnStart.TabIndex = 7;
-            this.btnStart.Text = "Prepare Test";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(405, 167);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.groupTestModes);
             this.Controls.Add(this.txtPingInterval);
@@ -141,7 +111,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Main";
-            this.Text = "Neasure - Network Measurement";
             this.groupTestModes.ResumeLayout(false);
             this.groupTestModes.PerformLayout();
             this.ResumeLayout(false);

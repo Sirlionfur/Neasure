@@ -118,25 +118,43 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+  <data name="lblServerAdress.Size" type="System.Drawing.Size, System.Drawing">
+    <value>82, 13</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>800, 450</value>
+  <data name="lblServerAdress.Text" xml:space="preserve">
+    <value>Server Adresse:</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="lblPingInterval.Size" type="System.Drawing.Size, System.Drawing">
+    <value>143, 13</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>Result</value>
+  <data name="lblPingInterval.Text" xml:space="preserve">
+    <value>Ping Abstand (In Sekunden):</value>
+  </data>
+  <data name="radioBtnExtremeTest.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 17</value>
+  </data>
+  <data name="radioBtnExtremeTest.Text" xml:space="preserve">
+    <value>Extremer Test (7 Tage)</value>
+  </data>
+  <data name="radioBtnLongTest.Size" type="System.Drawing.Size, System.Drawing">
+    <value>146, 17</value>
+  </data>
+  <data name="radioBtnLongTest.Text" xml:space="preserve">
+    <value>Langer Test (24 Stunden)</value>
+  </data>
+  <data name="radioBtnShortTest.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 17</value>
+  </data>
+  <data name="radioBtnShortTest.Text" xml:space="preserve">
+    <value>Kurzer Test (1 Stunde)</value>
+  </data>
+  <data name="groupTestModes.Text" xml:space="preserve">
+    <value>Test Modus:</value>
+  </data>
+  <data name="btnStart.Text" xml:space="preserve">
+    <value>Test Vorbereiten</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Neasure - Result</value>
+    <value>Neasure - Netzwerk Messung</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>de</value>
-  </metadata>
 </root>

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Test));
             this.lblTestRunning = new System.Windows.Forms.Label();
             this.lblRemainingTime = new System.Windows.Forms.Label();
             this.lblTime = new System.Windows.Forms.Label();
@@ -42,67 +43,43 @@
             // 
             // lblTestRunning
             // 
-            this.lblTestRunning.AutoSize = true;
-            this.lblTestRunning.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTestRunning.Location = new System.Drawing.Point(12, 9);
+            resources.ApplyResources(this.lblTestRunning, "lblTestRunning");
             this.lblTestRunning.Name = "lblTestRunning";
-            this.lblTestRunning.Size = new System.Drawing.Size(244, 31);
-            this.lblTestRunning.TabIndex = 0;
-            this.lblTestRunning.Text = "Press Start to Start";
             // 
             // lblRemainingTime
             // 
-            this.lblRemainingTime.AutoSize = true;
-            this.lblRemainingTime.Location = new System.Drawing.Point(15, 59);
+            resources.ApplyResources(this.lblRemainingTime, "lblRemainingTime");
             this.lblRemainingTime.Name = "lblRemainingTime";
-            this.lblRemainingTime.Size = new System.Drawing.Size(86, 13);
-            this.lblRemainingTime.TabIndex = 1;
-            this.lblRemainingTime.Text = "Remaining Time:";
             // 
             // lblTime
             // 
-            this.lblTime.AutoSize = true;
-            this.lblTime.Location = new System.Drawing.Point(107, 59);
+            resources.ApplyResources(this.lblTime, "lblTime");
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(40, 13);
-            this.lblTime.TabIndex = 2;
-            this.lblTime.Text = "lblTime";
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(18, 75);
+            resources.ApplyResources(this.progressBar, "progressBar");
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(285, 23);
-            this.progressBar.TabIndex = 3;
             // 
             // btnStatus
             // 
-            this.btnStatus.Location = new System.Drawing.Point(18, 104);
+            resources.ApplyResources(this.btnStatus, "btnStatus");
             this.btnStatus.Name = "btnStatus";
-            this.btnStatus.Size = new System.Drawing.Size(145, 23);
-            this.btnStatus.TabIndex = 4;
-            this.btnStatus.Text = "Current Status";
             this.btnStatus.UseVisualStyleBackColor = true;
             this.btnStatus.Click += new System.EventHandler(this.btnStatus_Click);
             // 
             // btnAbort
             // 
+            resources.ApplyResources(this.btnAbort, "btnAbort");
             this.btnAbort.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnAbort.Location = new System.Drawing.Point(169, 104);
             this.btnAbort.Name = "btnAbort";
-            this.btnAbort.Size = new System.Drawing.Size(134, 23);
-            this.btnAbort.TabIndex = 5;
-            this.btnAbort.Text = "Abort";
             this.btnAbort.UseVisualStyleBackColor = true;
             this.btnAbort.Click += new System.EventHandler(this.btnAbort_Click);
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(18, 133);
+            resources.ApplyResources(this.btnStart, "btnStart");
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(285, 23);
-            this.btnStart.TabIndex = 6;
-            this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
@@ -114,9 +91,8 @@
             // 
             // Test
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(317, 165);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.btnAbort);
             this.Controls.Add(this.btnStatus);
@@ -127,7 +103,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "Test";
-            this.Text = "Neasure - Testing...";
             this.ResumeLayout(false);
             this.PerformLayout();
 
