@@ -13,10 +13,12 @@ namespace Neasure
         private string serverAdress;
         private int pingInterval;
         private int mode;
-        private string resultFile;
+        private static string resultFile;
         private int count = 0;
 
         private DateTime timeTestStartet;
+
+        private static object writeLock = new object();
 
         public Test(string serverAdress, int pingInterval, int mode)
         {
@@ -53,37 +55,37 @@ namespace Neasure
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            // Start test if the User wants to Start
             lblTestRunning.Text = "Your Test is Running...";
 
+            // Get Date and Time, Create new File and Write the Header
             timeTestStartet = DateTime.Now;
+            resultFile = @"result_" + timeTestStartet.ToString("yyyyMMddTHHmmss") + ".txt";
+            ThreadPool.QueueUserWorkItem(WriteToFile, "Server Adress;Status;Time;Adress");
 
+            // Start the Test
             backgroundWorkerPing.RunWorkerAsync();
         }
 
         private void backgroundWorkerPing_DoWork(object sender, DoWorkEventArgs e)
         {
-            resultFile = @"result_" + timeTestStartet.ToString("yyyyMMddTHHmmss") + ".txt";
-            using (var writer = new StreamWriter(resultFile, false))
+            //TODO Replace While Loop with the Time of the Chosen Mode (1 Hour/24 Hours/7 Days)
+            while (count != 10)
             {
-                writer.WriteLine("Server Adress;Status;Time;Adress");
-                //TODO Replace While Loop with the Time of the Chosen Mode (1 Hour/24 Hours/7 Days)
-                while (count != 10)
+                Ping myPing = new Ping();
+                PingReply reply = myPing.Send(serverAdress, pingInterval);
+                if (reply != null)
                 {
-                    Ping myPing = new Ping();
-                    PingReply reply = myPing.Send(serverAdress, pingInterval);
-                    if (reply != null)
-                    {
-                        // Use the overload of WriteLine that accepts string format and arguments
-                        Console.WriteLine("Ping at " + serverAdress + " - Status: " + reply.Status + " - Time: " + reply.RoundtripTime + " - Adress: " + reply.Address);
-                        writer.WriteLine("{0};{1};{2};{3}", serverAdress, reply.Status, reply.RoundtripTime, reply.Address);
+                    // Use the overload of WriteLine that accepts string format and arguments
+                    Console.WriteLine("Ping at " + serverAdress + " - Status: " + reply.Status + " - Time: " + reply.RoundtripTime + " - Adress: " + reply.Address);
 
-                        backgroundWorkerPing.ReportProgress(count * 10);
-                    }
+                    var msg = serverAdress + ";" + reply.Status + ";" + reply.RoundtripTime + ";" + reply.Address;
+                    ThreadPool.QueueUserWorkItem(WriteToFile, msg);
 
-                    Thread.Sleep(pingInterval);
-                    count++;
+                    backgroundWorkerPing.ReportProgress(count * 10);
                 }
+
+                Thread.Sleep(pingInterval);
+                count++;
             }
         }
 
@@ -111,6 +113,19 @@ namespace Neasure
             lblTestRunning.Text = "Test Complete!";
 
             //TODO Open Results
+        }
+
+        public static void WriteToFile(object msg)
+        {
+            lock (writeLock)
+            {
+                var file = resultFile;
+
+                using (var writer = File.AppendText((string)file))
+                {
+                    writer.WriteLine((string)msg);
+                }
+            }
         }
     }
 }

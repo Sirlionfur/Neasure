@@ -45,7 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Logger.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +71,9 @@
     <Compile Include="Test.Designer.cs">
       <DependentUpon>Test.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Main.de.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -84,11 +86,20 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Result.de.resx">
+      <DependentUpon>Result.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Result.resx">
       <DependentUpon>Result.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Status.de.resx">
+      <DependentUpon>Status.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Status.resx">
       <DependentUpon>Status.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Test.de.resx">
+      <DependentUpon>Test.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Test.resx">
       <DependentUpon>Test.cs</DependentUpon>
