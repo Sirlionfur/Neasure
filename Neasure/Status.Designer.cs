@@ -30,10 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Status));
             this.lblStatus = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblServerAdress = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblModeChosen = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblTimeouts = new System.Windows.Forms.Label();
             this.lblTimeoutTime = new System.Windows.Forms.Label();
@@ -54,26 +50,6 @@
             // 
             resources.ApplyResources(this.lblStatus, "lblStatus");
             this.lblStatus.Name = "lblStatus";
-            // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            // 
-            // lblServerAdress
-            // 
-            resources.ApplyResources(this.lblServerAdress, "lblServerAdress");
-            this.lblServerAdress.Name = "lblServerAdress";
-            // 
-            // label2
-            // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
-            // 
-            // lblModeChosen
-            // 
-            resources.ApplyResources(this.lblModeChosen, "lblModeChosen");
-            this.lblModeChosen.Name = "lblModeChosen";
             // 
             // label3
             // 
@@ -163,10 +139,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lblTimeouts);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.lblModeChosen);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.lblServerAdress);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblStatus);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -179,10 +151,6 @@
         #endregion
 
         private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblServerAdress;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lblModeChosen;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblTimeouts;
         private System.Windows.Forms.Label lblTimeoutTime;

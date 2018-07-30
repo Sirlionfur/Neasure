@@ -16,12 +16,14 @@ namespace Neasure
         private int mode;
         private static string resultFile;
         private System.Timers.Timer timer;
+        private System.Timers.Timer timeoutTimer = new System.Timers.Timer(1000);
 
         private DateTime timeTestStartet;
 
         private static object writeLock = new object();
 
-        private Status status;
+        private Status status = new Status();
+        private bool timeoutRow = false;
 
         public Test(string serverAdress, int pingInterval, int mode)
         {
@@ -52,7 +54,6 @@ namespace Neasure
 
         private void btnStatus_Click(object sender, EventArgs e)
         {
-            Status status = new Status(serverAdress, mode);
             status.Show();
         }
 
@@ -118,9 +119,26 @@ namespace Neasure
                         var msg = reply.Status + ";" + reply.RoundtripTime + ";" + reply.Address;
                         ThreadPool.QueueUserWorkItem(WriteToFile, msg);
 
+
+                        //TODO Creating a Better Timeouts in a Row Counter and Better Timeout Timer
                         if (reply.Status == IPStatus.TimedOut)
                         {
+                            timeoutTimer.AutoReset = true;
+                            timeoutTimer.Elapsed += timeoutTimerHandle;
+                            timeoutTimer.Enabled = true;
+
                             status.timeouts++;
+                            if(timeoutRow == true)
+                            {
+                                status.timeoutsInRow++;
+                            } else
+                            {
+                                timeoutRow = true;
+                            }
+                        } else if (reply.Status == IPStatus.Success)
+                        {
+                            timeoutTimer.Enabled = false;
+                            timeoutRow = false;
                         }
                     }
 
@@ -138,7 +156,9 @@ namespace Neasure
             progressBar.Value = 0;
             lblTestRunning.Text = "Test Complete!";
 
-            //TODO Open Results
+            Result result = new Result(status);
+            result.Show();
+            this.Close();
         }
 
         // The File Writer Function working in the Background
@@ -162,6 +182,11 @@ namespace Neasure
         {
             backgroundWorkerPing.CancelAsync();
             timer.Enabled = false;
+        }
+
+        private void timeoutTimerHandle(object sender, ElapsedEventArgs e)
+        {
+            status.timeoutTime++;
         }
     }
 }
