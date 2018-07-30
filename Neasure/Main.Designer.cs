@@ -38,6 +38,7 @@
             this.radioBtnLongTest = new System.Windows.Forms.RadioButton();
             this.radioBtnShortTest = new System.Windows.Forms.RadioButton();
             this.btnStart = new System.Windows.Forms.Button();
+            this.radioBtnDebug = new System.Windows.Forms.RadioButton();
             this.groupTestModes.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,10 +64,11 @@
             // 
             // groupTestModes
             // 
-            resources.ApplyResources(this.groupTestModes, "groupTestModes");
+            this.groupTestModes.Controls.Add(this.radioBtnDebug);
             this.groupTestModes.Controls.Add(this.radioBtnExtremeTest);
             this.groupTestModes.Controls.Add(this.radioBtnLongTest);
             this.groupTestModes.Controls.Add(this.radioBtnShortTest);
+            resources.ApplyResources(this.groupTestModes, "groupTestModes");
             this.groupTestModes.Name = "groupTestModes";
             this.groupTestModes.TabStop = false;
             // 
@@ -97,6 +99,13 @@
             this.btnStart.Name = "btnStart";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
+            // radioBtnDebug
+            // 
+            resources.ApplyResources(this.radioBtnDebug, "radioBtnDebug");
+            this.radioBtnDebug.Name = "radioBtnDebug";
+            this.radioBtnDebug.TabStop = true;
+            this.radioBtnDebug.UseVisualStyleBackColor = true;
             // 
             // Main
             // 
@@ -129,6 +138,7 @@
         private System.Windows.Forms.RadioButton radioBtnExtremeTest;
         private System.Windows.Forms.RadioButton radioBtnLongTest;
         private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.RadioButton radioBtnDebug;
     }
 }
 

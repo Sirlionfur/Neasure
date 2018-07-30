@@ -26,26 +26,6 @@ namespace Neasure
         {
             InitializeComponent();
 
-            // Setting the Maximum for the Progress Bar
-            switch (mode)
-            {
-                case 0:
-                    progressBar.Maximum = 3600;
-                    break;
-
-                case 1:
-                    progressBar.Maximum = 86400;
-                    break;
-
-                case 2:
-                    progressBar.Maximum = 604800;
-                    break;
-
-                default:
-                    MessageBox.Show("Error while Checking for Chosen Mode", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-            }
-
             // Set the Background Workers Settings
             backgroundWorkerPing.DoWork += backgroundWorkerPing_DoWork;
             backgroundWorkerPing.ProgressChanged += backgroundWorkerPing_ProgressChanged;
@@ -90,6 +70,9 @@ namespace Neasure
 
                 case 2:
                     timer = new System.Timers.Timer(604800);
+                    break;
+                case 3:
+                    timer = new System.Timers.Timer(30);
                     break;
 
                 default:

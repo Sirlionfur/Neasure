@@ -27,7 +27,7 @@ namespace Neasure
             }
 
             // Check if any mode was chosen
-            if (!radioBtnShortTest.Checked && !radioBtnLongTest.Checked && !radioBtnExtremeTest.Checked)
+            if (!radioBtnShortTest.Checked && !radioBtnLongTest.Checked && !radioBtnExtremeTest.Checked && !radioBtnDebug.Checked)
             {
                 MessageBox.Show("You need to pick a Mode to Test", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -44,6 +44,7 @@ namespace Neasure
                 if (radioBtnShortTest.Checked) { radioSelection = 0; }
                 if (radioBtnLongTest.Checked) { radioSelection = 1; }
                 if (radioBtnExtremeTest.Checked) { radioSelection = 2; }
+                if (radioBtnDebug.Checked) { radioSelection = 3; }
 
                 string oldPing = txtPingInterval.Text;
                 var newPing = oldPing.PadRight(4, '0');
