@@ -125,10 +125,13 @@
     <value>Server Adresse:</value>
   </data>
   <data name="lblPingInterval.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 13</value>
+    <value>156, 13</value>
   </data>
   <data name="lblPingInterval.Text" xml:space="preserve">
-    <value>Ping Abstand (In Sekunden):</value>
+    <value>Ping Abstand (In Milisekunden):</value>
+  </data>
+  <data name="groupTestModes.Text" xml:space="preserve">
+    <value>Test Modus:</value>
   </data>
   <data name="radioBtnExtremeTest.Size" type="System.Drawing.Size, System.Drawing">
     <value>133, 17</value>
@@ -147,9 +150,6 @@
   </data>
   <data name="radioBtnShortTest.Text" xml:space="preserve">
     <value>Kurzer Test (1 Stunde)</value>
-  </data>
-  <data name="groupTestModes.Text" xml:space="preserve">
-    <value>Test Modus:</value>
   </data>
   <data name="btnStart.Text" xml:space="preserve">
     <value>Test Vorbereiten</value>

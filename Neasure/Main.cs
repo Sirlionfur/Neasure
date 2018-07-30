@@ -46,10 +46,7 @@ namespace Neasure
                 if (radioBtnExtremeTest.Checked) { radioSelection = 2; }
                 if (radioBtnDebug.Checked) { radioSelection = 3; }
 
-                string oldPing = txtPingInterval.Text;
-                var newPing = oldPing.PadRight(4, '0');
-
-                int pingInt = Int32.Parse(newPing);
+                int pingInt = Int32.Parse(txtPingInterval.Text);
 
                 // Den Test Beginnen
 

@@ -57,33 +57,39 @@ namespace Neasure
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            var TimeMiliseconds = 0;
+            btnStart.Enabled = false;
+
             // Set Timers Time according to the Mode
             switch (mode)
             {
                 case 0:
-                    timer = new System.Timers.Timer(3600);
+                    TimeMiliseconds = 3600000;
                     break;
 
                 case 1:
-                    timer = new System.Timers.Timer(86400);
+                    TimeMiliseconds = 86400000;
                     break;
 
                 case 2:
-                    timer = new System.Timers.Timer(604800);
+                    TimeMiliseconds = 604800000;
                     break;
                 case 3:
-                    timer = new System.Timers.Timer(30);
+                    TimeMiliseconds = 30000;
                     break;
 
                 default:
                     MessageBox.Show("Error while Checking for Chosen Mode", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    btnStart.Enabled = true;
                     return;
             }
 
-            timer.Elapsed += HandleTimer;
-            timer.AutoReset = true;
-
             lblTestRunning.Text = "Your Test is Running...";
+
+            timer = new System.Timers.Timer(TimeMiliseconds);
+            timer.AutoReset = false;
+            timer.Elapsed += HandleTimer;
+            timer.Enabled = true;
 
             // Get Date and Time, Create new File and Write the Header
             timeTestStartet = DateTime.Now;
@@ -91,13 +97,12 @@ namespace Neasure
             ThreadPool.QueueUserWorkItem(WriteToFile, "Status;Time;Adress");
 
             // Start the Test
-            timer.Enabled = true;
             backgroundWorkerPing.RunWorkerAsync();
         }
 
         private void backgroundWorkerPing_DoWork(object sender, DoWorkEventArgs e)
         {
-            while (true)
+            while (timer.Enabled)
             {
                 Ping myPing = new Ping();
                 PingReply reply = myPing.Send(serverAdress, pingInterval);
@@ -162,10 +167,10 @@ namespace Neasure
 
         // Declaring the Events for the Timer
 
-        private void HandleTimer(Object source, ElapsedEventArgs e)
+        private void HandleTimer(object sender, ElapsedEventArgs e)
         {
             backgroundWorkerPing.CancelAsync();
-            timer.Stop();
+            timer.Enabled = false;
         }
     }
 }

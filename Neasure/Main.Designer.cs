@@ -34,11 +34,11 @@
             this.lblPingInterval = new System.Windows.Forms.Label();
             this.txtPingInterval = new System.Windows.Forms.TextBox();
             this.groupTestModes = new System.Windows.Forms.GroupBox();
+            this.radioBtnDebug = new System.Windows.Forms.RadioButton();
             this.radioBtnExtremeTest = new System.Windows.Forms.RadioButton();
             this.radioBtnLongTest = new System.Windows.Forms.RadioButton();
             this.radioBtnShortTest = new System.Windows.Forms.RadioButton();
             this.btnStart = new System.Windows.Forms.Button();
-            this.radioBtnDebug = new System.Windows.Forms.RadioButton();
             this.groupTestModes.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,13 +64,20 @@
             // 
             // groupTestModes
             // 
+            resources.ApplyResources(this.groupTestModes, "groupTestModes");
             this.groupTestModes.Controls.Add(this.radioBtnDebug);
             this.groupTestModes.Controls.Add(this.radioBtnExtremeTest);
             this.groupTestModes.Controls.Add(this.radioBtnLongTest);
             this.groupTestModes.Controls.Add(this.radioBtnShortTest);
-            resources.ApplyResources(this.groupTestModes, "groupTestModes");
             this.groupTestModes.Name = "groupTestModes";
             this.groupTestModes.TabStop = false;
+            // 
+            // radioBtnDebug
+            // 
+            resources.ApplyResources(this.radioBtnDebug, "radioBtnDebug");
+            this.radioBtnDebug.Name = "radioBtnDebug";
+            this.radioBtnDebug.TabStop = true;
+            this.radioBtnDebug.UseVisualStyleBackColor = true;
             // 
             // radioBtnExtremeTest
             // 
@@ -99,13 +106,6 @@
             this.btnStart.Name = "btnStart";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-            // 
-            // radioBtnDebug
-            // 
-            resources.ApplyResources(this.radioBtnDebug, "radioBtnDebug");
-            this.radioBtnDebug.Name = "radioBtnDebug";
-            this.radioBtnDebug.TabStop = true;
-            this.radioBtnDebug.UseVisualStyleBackColor = true;
             // 
             // Main
             // 
