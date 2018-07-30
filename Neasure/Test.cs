@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.IO;
 using System.Net.NetworkInformation;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
 
 namespace Neasure
@@ -14,7 +16,7 @@ namespace Neasure
         private int pingInterval;
         private int mode;
         private static string resultFile;
-        private int count = 0;
+        private System.Timers.Timer timer;
 
         private DateTime timeTestStartet;
 
@@ -23,6 +25,26 @@ namespace Neasure
         public Test(string serverAdress, int pingInterval, int mode)
         {
             InitializeComponent();
+
+            // Setting the Maximum for the Progress Bar
+            switch (mode)
+            {
+                case 0:
+                    progressBar.Maximum = 3600;
+                    break;
+
+                case 1:
+                    progressBar.Maximum = 86400;
+                    break;
+
+                case 2:
+                    progressBar.Maximum = 604800;
+                    break;
+
+                default:
+                    MessageBox.Show("Error while Checking for Chosen Mode", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+            }
 
             // Set the Background Workers Settings
             backgroundWorkerPing.DoWork += backgroundWorkerPing_DoWork;
@@ -55,21 +77,44 @@ namespace Neasure
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            // Set Timers Time according to the Mode
+            switch (mode)
+            {
+                case 0:
+                    timer = new System.Timers.Timer(3600);
+                    break;
+
+                case 1:
+                    timer = new System.Timers.Timer(86400);
+                    break;
+
+                case 2:
+                    timer = new System.Timers.Timer(604800);
+                    break;
+
+                default:
+                    MessageBox.Show("Error while Checking for Chosen Mode", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+            }
+
+            timer.Elapsed += HandleTimer;
+            timer.AutoReset = true;
+
             lblTestRunning.Text = "Your Test is Running...";
 
             // Get Date and Time, Create new File and Write the Header
             timeTestStartet = DateTime.Now;
             resultFile = @"result_" + timeTestStartet.ToString("yyyyMMddTHHmmss") + ".txt";
-            ThreadPool.QueueUserWorkItem(WriteToFile, "Server Adress;Status;Time;Adress");
+            ThreadPool.QueueUserWorkItem(WriteToFile, "Status;Time;Adress");
 
             // Start the Test
+            timer.Enabled = true;
             backgroundWorkerPing.RunWorkerAsync();
         }
 
         private void backgroundWorkerPing_DoWork(object sender, DoWorkEventArgs e)
         {
-            //TODO Replace While Loop with the Time of the Chosen Mode (1 Hour/24 Hours/7 Days)
-            while (count != 10)
+            while (true)
             {
                 Ping myPing = new Ping();
                 PingReply reply = myPing.Send(serverAdress, pingInterval);
@@ -78,14 +123,14 @@ namespace Neasure
                     // Use the overload of WriteLine that accepts string format and arguments
                     Console.WriteLine("Ping at " + serverAdress + " - Status: " + reply.Status + " - Time: " + reply.RoundtripTime + " - Adress: " + reply.Address);
 
-                    var msg = serverAdress + ";" + reply.Status + ";" + reply.RoundtripTime + ";" + reply.Address;
+                    var msg = reply.Status + ";" + reply.RoundtripTime + ";" + reply.Address;
                     ThreadPool.QueueUserWorkItem(WriteToFile, msg);
 
-                    backgroundWorkerPing.ReportProgress(count * 10);
+                    //TODO Find something to Report back
+                    //backgroundWorkerPing.ReportProgress(count * 10);
                 }
 
                 Thread.Sleep(pingInterval);
-                count++;
             }
         }
 
@@ -95,6 +140,7 @@ namespace Neasure
             //TODO Repair remaining time label
             progressBar.Value = e.ProgressPercentage;
 
+            /*
             if (e.ProgressPercentage != 0)
             {
                 double percentageComplete = (double)e.ProgressPercentage / count * 10;
@@ -105,6 +151,7 @@ namespace Neasure
 
                 lblTime.Text = timeLeft.ToString();
             }
+            */
         }
 
         private void backgroundWorkerPing_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -114,6 +161,8 @@ namespace Neasure
 
             //TODO Open Results
         }
+
+        // The File Writer Function working in the Background
 
         public static void WriteToFile(object msg)
         {
@@ -126,6 +175,14 @@ namespace Neasure
                     writer.WriteLine((string)msg);
                 }
             }
+        }
+
+        // Declaring the Events for the Timer
+
+        private void HandleTimer(Object source, ElapsedEventArgs e)
+        {
+            backgroundWorkerPing.CancelAsync();
+            timer.Stop();
         }
     }
 }
