@@ -21,6 +21,8 @@ namespace Neasure
 
         private static object writeLock = new object();
 
+        private Status status;
+
         public Test(string serverAdress, int pingInterval, int mode)
         {
             InitializeComponent();
@@ -104,18 +106,30 @@ namespace Neasure
         {
             while (timer.Enabled)
             {
-                Ping myPing = new Ping();
-                PingReply reply = myPing.Send(serverAdress, pingInterval);
-                if (reply != null)
+                try
                 {
-                    // Use the overload of WriteLine that accepts string format and arguments
-                    Console.WriteLine("Ping at " + serverAdress + " - Status: " + reply.Status + " - Time: " + reply.RoundtripTime + " - Adress: " + reply.Address);
+                    Ping myPing = new Ping();
+                    PingReply reply = myPing.Send(serverAdress, pingInterval);
+                    if (reply != null)
+                    {
+                        // Use the overload of WriteLine that accepts string format and arguments
+                        Console.WriteLine("Ping at " + serverAdress + " - Status: " + reply.Status + " - Time: " + reply.RoundtripTime + " - Adress: " + reply.Address);
 
-                    var msg = reply.Status + ";" + reply.RoundtripTime + ";" + reply.Address;
-                    ThreadPool.QueueUserWorkItem(WriteToFile, msg);
+                        var msg = reply.Status + ";" + reply.RoundtripTime + ";" + reply.Address;
+                        ThreadPool.QueueUserWorkItem(WriteToFile, msg);
+
+                        if (reply.Status == IPStatus.TimedOut)
+                        {
+                            status.timeouts++;
+                        }
+                    }
+
+                    Thread.Sleep(pingInterval);
                 }
-
-                Thread.Sleep(pingInterval);
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error while Pinging:\n" + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

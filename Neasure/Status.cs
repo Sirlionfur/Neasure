@@ -18,17 +18,19 @@ namespace Neasure
         private int averageTimeoutTime;
         private int averageLatency;
 
-        public int timeouts { get; set; }
-        public int timeoutTime { get; set; }
-        public int timeoutsInRow { get; set; }
-        public int highestLatency { get; set; }
-        public int lowestLatency { get; set; }
+        public int timeouts { get; set; } = 0;
+        public int timeoutTime { get; set; } = 0;
+        public int timeoutsInRow { get; set; } = 0;
+        public int highestLatency { get; set; } = 0;
+        public int lowestLatency { get; set; } = 0;
+
+        public bool dataSent { get; set; } = false;
 
         public Status(string serverAdress, int mode)
         {
             InitializeComponent();
 
-            System.Timers.Timer timer = new System.Timers.Timer(5000);
+            System.Timers.Timer timer = new System.Timers.Timer(1000);
             timer.AutoReset = true;
             timer.Elapsed += updateData;
             timer.Enabled = true;
@@ -61,8 +63,10 @@ namespace Neasure
             {
                 // Update the Data given from the ongoing Test
 
-                averageTimeoutTime = timeoutTime / timeoutsInRow;
-
+                if (timeoutsInRow != 0)
+                {
+                    averageTimeoutTime = timeoutTime / timeoutsInRow;
+                }
                 lblTimeouts.Text = timeouts.ToString();
                 lblTimeoutTime.Text = timeoutTime.ToString();
                 lblTimeoutsInRow.Text = timeoutsInRow.ToString();
@@ -83,8 +87,10 @@ namespace Neasure
             {
                 // Update the Data given from the ongoing Test
 
-                averageTimeoutTime = timeoutTime / timeoutsInRow;
-
+                if (timeoutsInRow != 0)
+                {
+                    averageTimeoutTime = timeoutTime / timeoutsInRow;
+                }
                 lblTimeouts.Text = timeouts.ToString();
                 lblTimeoutTime.Text = timeoutTime.ToString();
                 lblTimeoutsInRow.Text = timeoutsInRow.ToString();
