@@ -84,7 +84,6 @@
             // backgroundWorkerPing
             // 
             this.backgroundWorkerPing.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerPing_DoWork);
-            this.backgroundWorkerPing.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerPing_ProgressChanged);
             this.backgroundWorkerPing.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerPing_RunWorkerCompleted);
             // 
             // Test

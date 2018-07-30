@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.IO;
 using System.Net.NetworkInformation;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
 
@@ -28,7 +27,6 @@ namespace Neasure
 
             // Set the Background Workers Settings
             backgroundWorkerPing.DoWork += backgroundWorkerPing_DoWork;
-            backgroundWorkerPing.ProgressChanged += backgroundWorkerPing_ProgressChanged;
             backgroundWorkerPing.WorkerReportsProgress = true;
             backgroundWorkerPing.WorkerSupportsCancellation = true;
 
@@ -52,7 +50,8 @@ namespace Neasure
 
         private void btnStatus_Click(object sender, EventArgs e)
         {
-            //TODO Zeige den Aktuellen Status
+            Status status = new Status(serverAdress, mode);
+            status.Show();
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -86,6 +85,7 @@ namespace Neasure
 
             lblTestRunning.Text = "Your Test is Running...";
 
+            progressBar.Maximum = TimeMiliseconds;
             timer = new System.Timers.Timer(TimeMiliseconds);
             timer.AutoReset = false;
             timer.Elapsed += HandleTimer;
@@ -113,33 +113,10 @@ namespace Neasure
 
                     var msg = reply.Status + ";" + reply.RoundtripTime + ";" + reply.Address;
                     ThreadPool.QueueUserWorkItem(WriteToFile, msg);
-
-                    //TODO Find something to Report back
-                    //backgroundWorkerPing.ReportProgress(count * 10);
                 }
 
                 Thread.Sleep(pingInterval);
             }
-        }
-
-        private void backgroundWorkerPing_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            // Update Progress Bar and the Remaining Time Label according to the Progress
-            //TODO Repair remaining time label
-            progressBar.Value = e.ProgressPercentage;
-
-            /*
-            if (e.ProgressPercentage != 0)
-            {
-                double percentageComplete = (double)e.ProgressPercentage / count * 10;
-
-                TimeSpan timeSinceStart = DateTime.Now.Subtract(timeTestStartet);
-                TimeSpan totalTime = TimeSpan.FromMilliseconds(timeSinceStart.TotalMilliseconds / percentageComplete);
-                TimeSpan timeLeft = totalTime - timeSinceStart;
-
-                lblTime.Text = timeLeft.ToString();
-            }
-            */
         }
 
         private void backgroundWorkerPing_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
