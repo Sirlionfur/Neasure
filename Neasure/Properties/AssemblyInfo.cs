@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die einer Assembly zugeordnet sind.
 [assembly: AssemblyTitle("Neasure")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A Network Measurement Tool")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Neasure")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
+[assembly: AssemblyCopyright("Neasure © by Sirlionfur")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
