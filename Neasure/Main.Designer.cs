@@ -31,15 +31,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.txtServerAdress = new System.Windows.Forms.TextBox();
             this.lblServerAdress = new System.Windows.Forms.Label();
-            this.lblPingInterval = new System.Windows.Forms.Label();
-            this.txtPingInterval = new System.Windows.Forms.TextBox();
             this.groupTestModes = new System.Windows.Forms.GroupBox();
             this.radioBtnDebug = new System.Windows.Forms.RadioButton();
             this.radioBtnExtremeTest = new System.Windows.Forms.RadioButton();
             this.radioBtnLongTest = new System.Windows.Forms.RadioButton();
             this.radioBtnShortTest = new System.Windows.Forms.RadioButton();
             this.btnStart = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioBtnInterval1Sec = new System.Windows.Forms.RadioButton();
             this.groupTestModes.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtServerAdress
@@ -52,23 +53,13 @@
             resources.ApplyResources(this.lblServerAdress, "lblServerAdress");
             this.lblServerAdress.Name = "lblServerAdress";
             // 
-            // lblPingInterval
-            // 
-            resources.ApplyResources(this.lblPingInterval, "lblPingInterval");
-            this.lblPingInterval.Name = "lblPingInterval";
-            // 
-            // txtPingInterval
-            // 
-            resources.ApplyResources(this.txtPingInterval, "txtPingInterval");
-            this.txtPingInterval.Name = "txtPingInterval";
-            // 
             // groupTestModes
             // 
-            resources.ApplyResources(this.groupTestModes, "groupTestModes");
             this.groupTestModes.Controls.Add(this.radioBtnDebug);
             this.groupTestModes.Controls.Add(this.radioBtnExtremeTest);
             this.groupTestModes.Controls.Add(this.radioBtnLongTest);
             this.groupTestModes.Controls.Add(this.radioBtnShortTest);
+            resources.ApplyResources(this.groupTestModes, "groupTestModes");
             this.groupTestModes.Name = "groupTestModes";
             this.groupTestModes.TabStop = false;
             // 
@@ -107,14 +98,27 @@
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radioBtnInterval1Sec);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.TabStop = false;
+            // 
+            // radioBtnInterval1Sec
+            // 
+            resources.ApplyResources(this.radioBtnInterval1Sec, "radioBtnInterval1Sec");
+            this.radioBtnInterval1Sec.Name = "radioBtnInterval1Sec";
+            this.radioBtnInterval1Sec.TabStop = true;
+            this.radioBtnInterval1Sec.UseVisualStyleBackColor = true;
+            // 
             // Main
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.groupTestModes);
-            this.Controls.Add(this.txtPingInterval);
-            this.Controls.Add(this.lblPingInterval);
             this.Controls.Add(this.lblServerAdress);
             this.Controls.Add(this.txtServerAdress);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -122,6 +126,8 @@
             this.Name = "Main";
             this.groupTestModes.ResumeLayout(false);
             this.groupTestModes.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -131,14 +137,14 @@
 
         private System.Windows.Forms.TextBox txtServerAdress;
         private System.Windows.Forms.Label lblServerAdress;
-        private System.Windows.Forms.Label lblPingInterval;
-        private System.Windows.Forms.TextBox txtPingInterval;
         private System.Windows.Forms.GroupBox groupTestModes;
         private System.Windows.Forms.RadioButton radioBtnShortTest;
         private System.Windows.Forms.RadioButton radioBtnExtremeTest;
         private System.Windows.Forms.RadioButton radioBtnLongTest;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.RadioButton radioBtnDebug;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton radioBtnInterval1Sec;
     }
 }
 

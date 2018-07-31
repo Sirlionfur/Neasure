@@ -5,6 +5,8 @@ namespace Neasure
 {
     public partial class Main : Form
     {
+        private int pingInt;
+
         public Main()
         {
             InitializeComponent();
@@ -13,8 +15,8 @@ namespace Neasure
         private void btnStart_Click(object sender, EventArgs e)
         {
             // Check if Text Boxes are Empty
-            if (string.IsNullOrEmpty(txtServerAdress.Text) || string.IsNullOrEmpty(txtPingInterval.Text)){
-                MessageBox.Show("Server Adress and Ping Interval cant be Empty", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (string.IsNullOrEmpty(txtServerAdress.Text)){
+                MessageBox.Show("Server Adress cant be Empty", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -22,6 +24,13 @@ namespace Neasure
             if (!radioBtnShortTest.Checked && !radioBtnLongTest.Checked && !radioBtnExtremeTest.Checked && !radioBtnDebug.Checked)
             {
                 MessageBox.Show("You need to pick a Mode to Test", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Check if an Interval was chosen
+            if (!radioBtnInterval1Sec.Checked)
+            {
+                MessageBox.Show("You need to pick an Ping Interval to Test", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -38,8 +47,8 @@ namespace Neasure
                 if (radioBtnExtremeTest.Checked) { radioSelection = 2; }
                 if (radioBtnDebug.Checked) { radioSelection = 3; }
 
-                int pingInt = Int32.Parse(txtPingInterval.Text);
-
+                if (radioBtnInterval1Sec.Checked) { pingInt = 1000; }
+               
                 // Den Test Beginnen
 
                 Test test = new Test(txtServerAdress.Text, pingInt, radioSelection);
