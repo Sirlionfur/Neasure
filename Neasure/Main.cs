@@ -14,23 +14,10 @@ namespace Neasure
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            // Check if Text Boxes are Empty
-            if (string.IsNullOrEmpty(txtServerAdress.Text)){
-                MessageBox.Show("Server Adress cant be Empty", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
             // Check if any mode was chosen
             if (!radioBtnShortTest.Checked && !radioBtnLongTest.Checked && !radioBtnExtremeTest.Checked && !radioBtnDebug.Checked)
             {
                 MessageBox.Show("You need to pick a Mode to Test", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Check if an Interval was chosen
-            if (!radioBtnInterval1Sec.Checked)
-            {
-                MessageBox.Show("You need to pick an Ping Interval to Test", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -46,12 +33,10 @@ namespace Neasure
                 if (radioBtnLongTest.Checked) { radioSelection = 1; }
                 if (radioBtnExtremeTest.Checked) { radioSelection = 2; }
                 if (radioBtnDebug.Checked) { radioSelection = 3; }
-
-                if (radioBtnInterval1Sec.Checked) { pingInt = 1000; }
                
                 // Den Test Beginnen
 
-                Test test = new Test(txtServerAdress.Text, pingInt, radioSelection);
+                Test test = new Test(1000, radioSelection);
                 test.Show();
             } catch(Exception ex)
             {

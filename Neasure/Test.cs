@@ -11,7 +11,6 @@ namespace Neasure
     public partial class Test : Form
     {
         // Initialize Values
-        private string serverAdress;
         private int pingInterval;
         private int mode;
         private static string resultFile;
@@ -25,7 +24,7 @@ namespace Neasure
         private Status status = new Status();
         private bool timeoutRow = false;
 
-        public Test(string serverAdress, int pingInterval, int mode)
+        public Test(int pingInterval, int mode)
         {
             InitializeComponent();
 
@@ -35,7 +34,6 @@ namespace Neasure
             backgroundWorkerPing.WorkerSupportsCancellation = true;
 
             // Set the Private Values to the Values given from the Main Form
-            this.serverAdress = serverAdress;
             this.pingInterval = pingInterval;
             this.mode = mode;
         }
@@ -97,7 +95,7 @@ namespace Neasure
             // Get Date and Time, Create new File and Write the Header
             timeTestStartet = DateTime.Now;
             resultFile = @"result_" + timeTestStartet.ToString("yyyyMMddTHHmmss") + ".txt";
-            ThreadPool.QueueUserWorkItem(WriteToFile, "Status;Time;Adress");
+            ThreadPool.QueueUserWorkItem(WriteToFile, "Status;Latency;Adress;Test Time");
 
             // Start the Test
             backgroundWorkerPing.RunWorkerAsync();
@@ -110,13 +108,13 @@ namespace Neasure
                 try
                 {
                     Ping myPing = new Ping();
-                    PingReply reply = myPing.Send(serverAdress, pingInterval);
+                    PingReply reply = myPing.Send("8.8.8.8", pingInterval);
                     if (reply != null)
                     {
                         // Use the overload of WriteLine that accepts string format and arguments
-                        Console.WriteLine("Ping at " + serverAdress + " - Status: " + reply.Status + " - Time: " + reply.RoundtripTime + " - Adress: " + reply.Address);
+                        Console.WriteLine("Ping at 8.8.8.8 - Status: " + reply.Status + " - Time: " + reply.RoundtripTime + " - Adress: " + reply.Address);
 
-                        var msg = reply.Status + ";" + reply.RoundtripTime + ";" + reply.Address;
+                        var msg = reply.Status + ";" + reply.RoundtripTime + ";" + reply.Address + ";" + DateTime.Now.ToString("HH:mm:ss");
                         ThreadPool.QueueUserWorkItem(WriteToFile, msg);
 
 

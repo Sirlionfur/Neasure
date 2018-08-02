@@ -29,43 +29,28 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            this.txtServerAdress = new System.Windows.Forms.TextBox();
-            this.lblServerAdress = new System.Windows.Forms.Label();
             this.groupTestModes = new System.Windows.Forms.GroupBox();
             this.radioBtnDebug = new System.Windows.Forms.RadioButton();
             this.radioBtnExtremeTest = new System.Windows.Forms.RadioButton();
             this.radioBtnLongTest = new System.Windows.Forms.RadioButton();
             this.radioBtnShortTest = new System.Windows.Forms.RadioButton();
             this.btnStart = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioBtnInterval1Sec = new System.Windows.Forms.RadioButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupTestModes.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // txtServerAdress
-            // 
-            resources.ApplyResources(this.txtServerAdress, "txtServerAdress");
-            this.txtServerAdress.Name = "txtServerAdress";
-            // 
-            // lblServerAdress
-            // 
-            resources.ApplyResources(this.lblServerAdress, "lblServerAdress");
-            this.lblServerAdress.Name = "lblServerAdress";
-            // 
             // groupTestModes
             // 
+            resources.ApplyResources(this.groupTestModes, "groupTestModes");
             this.groupTestModes.Controls.Add(this.radioBtnDebug);
             this.groupTestModes.Controls.Add(this.radioBtnExtremeTest);
             this.groupTestModes.Controls.Add(this.radioBtnLongTest);
             this.groupTestModes.Controls.Add(this.radioBtnShortTest);
-            resources.ApplyResources(this.groupTestModes, "groupTestModes");
             this.groupTestModes.Name = "groupTestModes";
             this.groupTestModes.TabStop = false;
             // 
@@ -104,63 +89,46 @@
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.radioBtnInterval1Sec);
-            resources.ApplyResources(this.groupBox1, "groupBox1");
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.TabStop = false;
-            // 
-            // radioBtnInterval1Sec
-            // 
-            resources.ApplyResources(this.radioBtnInterval1Sec, "radioBtnInterval1Sec");
-            this.radioBtnInterval1Sec.Name = "radioBtnInterval1Sec";
-            this.radioBtnInterval1Sec.TabStop = true;
-            this.radioBtnInterval1Sec.UseVisualStyleBackColor = true;
-            // 
             // menuStrip1
             // 
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.helpToolStripMenuItem});
-            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
+            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.quitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
             // 
             // quitToolStripMenuItem
             // 
-            this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
             resources.ApplyResources(this.quitToolStripMenuItem, "quitToolStripMenuItem");
+            this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
+            resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
             // 
             // aboutToolStripMenuItem
             // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // Main
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.groupTestModes);
-            this.Controls.Add(this.lblServerAdress);
-            this.Controls.Add(this.txtServerAdress);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
@@ -168,8 +136,6 @@
             this.Name = "Main";
             this.groupTestModes.ResumeLayout(false);
             this.groupTestModes.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -178,17 +144,12 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtServerAdress;
-        private System.Windows.Forms.Label lblServerAdress;
         private System.Windows.Forms.GroupBox groupTestModes;
         private System.Windows.Forms.RadioButton radioBtnShortTest;
         private System.Windows.Forms.RadioButton radioBtnExtremeTest;
         private System.Windows.Forms.RadioButton radioBtnLongTest;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.RadioButton radioBtnDebug;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioBtnInterval1Sec;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem;
