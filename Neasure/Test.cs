@@ -108,8 +108,10 @@ namespace Neasure
             // Get Date and Time, Create new File and Write the Header
             timeTestStartet = DateTime.Now;
             resultFile = @"result_" + timeTestStartet.ToString("yyyyMMddTHHmmss") + ".txt";
-            speedTestFile = @"speed_test_results" + timeTestStartet.ToString("yyyyMMddTHHmmss") + ".txt";
-            ThreadPool.QueueUserWorkItem(WriteToFile, new object [] {"Mac Adress;Test Time;Test Date;Ping 8.8.8.8;Ping 8.8.4.4;Ping Default Gateway", resultFile});
+            speedTestFile = @"speed_test_results_" + timeTestStartet.ToString("yyyyMMddTHHmmss") + ".txt";
+            ThreadPool.QueueUserWorkItem(WriteToFile, new object[] {"Mac Adress;Test Time;Test Date;Ping 8.8.8.8;Ping 8.8.4.4;Ping Default Gateway", resultFile});
+            ThreadPool.QueueUserWorkItem(WriteToFile, new object[] {"Download Duration;File Size;Dowload Speed", resultFile });
+
 
             // Start the Test
             backgroundWorkerPing.RunWorkerAsync();
@@ -186,17 +188,14 @@ namespace Neasure
                 var sw = new System.Diagnostics.Stopwatch();
                 const string tempFile = "temp.tmp";
 
-                ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { "Starting New Speed Test...", speedTestFile });
                 sw.Start();
-                client.DownloadFile("https://speed.hetzner.de/1GB.bin", tempFile);
+                client.DownloadFile("https://speed.hetzner.de/100MB.bin", tempFile);
                 sw.Stop();
 
                 FileInfo fileInfo = new FileInfo(tempFile);
                 long speed = fileInfo.Length / sw.Elapsed.Seconds;
 
-                ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { "Download duration: " + sw.Elapsed, speedTestFile });
-                ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { "File size: " + fileInfo.Length.ToString("N0"), speedTestFile });
-                ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { "Download duration: " + speed.ToString("N0"), speedTestFile });
+                ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { sw.Elapsed + ";" + fileInfo.Length.ToString("N0") + ";" + speed.ToString("N0"), resultFile });
             }
             catch (Exception ex)
             {
