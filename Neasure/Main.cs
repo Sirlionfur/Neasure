@@ -21,12 +21,12 @@ namespace Neasure
                 return;
             }
 
-            // Den knopf deaktivieren, sodass nicht mehr als ein test gestartet werden kann
+            // Deactivating the Button, so the Test cannot be started twice accidently
             btnStart.Enabled = false;
 
             try
             {
-                // Überprüfen welchen Modus der Nutzer gewählt hat
+                // Check which mode the user chose
                 int radioSelection = 0;
 
                 if (radioBtnShortTest.Checked) { radioSelection = 0; }
@@ -34,13 +34,13 @@ namespace Neasure
                 if (radioBtnExtremeTest.Checked) { radioSelection = 2; }
                 if (radioBtnDebug.Checked) { radioSelection = 3; }
                
-                // Den Test Beginnen
+                // Start the Test
 
                 Test test = new Test(1000, radioSelection);
                 test.Show();
             } catch(Exception ex)
             {
-                // Abbruch Falls es ein Error gab
+                // Abort if there was an Error
                 MessageBox.Show("An Error Occured:\n" + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 btnStart.Enabled = true;
                 return;

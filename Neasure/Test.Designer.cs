@@ -37,6 +37,7 @@
             this.btnAbort = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
             this.backgroundWorkerPing = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorkerSpeedTest = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // lblTestRunning
@@ -68,8 +69,8 @@
             // 
             // btnAbort
             // 
-            resources.ApplyResources(this.btnAbort, "btnAbort");
             this.btnAbort.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            resources.ApplyResources(this.btnAbort, "btnAbort");
             this.btnAbort.Name = "btnAbort";
             this.btnAbort.UseVisualStyleBackColor = true;
             this.btnAbort.Click += new System.EventHandler(this.btnAbort_Click);
@@ -85,6 +86,11 @@
             // 
             this.backgroundWorkerPing.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerPing_DoWork);
             this.backgroundWorkerPing.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerPing_RunWorkerCompleted);
+            // 
+            // backgroundWorkerSpeedTest
+            // 
+            this.backgroundWorkerSpeedTest.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerSpeedTest_DoWork);
+            this.backgroundWorkerSpeedTest.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerSpeedTest_RunWorkerCompleted);
             // 
             // Test
             // 
@@ -115,5 +121,6 @@
         private System.Windows.Forms.Button btnAbort;
         private System.Windows.Forms.Button btnStart;
         private System.ComponentModel.BackgroundWorker backgroundWorkerPing;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerSpeedTest;
     }
 }

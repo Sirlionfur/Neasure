@@ -16,8 +16,10 @@ namespace Neasure
         private int pingInterval;
         private int mode;
         private static string resultFile;
+        private static string speedTestFile;
         private System.Timers.Timer timer;
         private System.Timers.Timer timeoutTimer = new System.Timers.Timer(1000);
+        private System.Timers.Timer speedTestTimer = new System.Timers.Timer(3600000);
 
         private DateTime timeTestStartet;
 
@@ -90,16 +92,23 @@ namespace Neasure
 
             lblTestRunning.Text = "Your Test is Running...";
 
+            // Initialize Proper Timer for chosen mode
             progressBar.Maximum = TimeMiliseconds;
             timer = new System.Timers.Timer(TimeMiliseconds);
             timer.AutoReset = false;
             timer.Elapsed += HandleTimer;
             timer.Enabled = true;
 
+            // Initialize Speed Test Timer
+            speedTestTimer.AutoReset = true;
+            speedTestTimer.Elapsed += HandleSpeedTimer;
+            speedTestTimer.Enabled = true;
+
             // Get Date and Time, Create new File and Write the Header
             timeTestStartet = DateTime.Now;
             resultFile = @"result_" + timeTestStartet.ToString("yyyyMMddTHHmmss") + ".txt";
-            ThreadPool.QueueUserWorkItem(WriteToFile, "Mac Adress;Test Time;Ping 8.8.8.8;Ping 8.8.4.4;Ping Default Gateway");
+            speedTestFile = @"speed_test_results" + timeTestStartet.ToString("yyyyMMddTHHmmss") + ".txt";
+            ThreadPool.QueueUserWorkItem(WriteToFile, new object [] {"Mac Adress;Test Time;Test Date;Ping 8.8.8.8;Ping 8.8.4.4;Ping Default Gateway", resultFile});
 
             // Start the Test
             backgroundWorkerPing.RunWorkerAsync();
@@ -134,17 +143,17 @@ namespace Neasure
                         {
                             PingReply routerReply = myPing.Send(defaultGateway.ToString(), pingInterval);
 
-                            var msg = macAddr + ";" + DateTime.Now.ToString("HH:mm:ss") + ";Timeout;Timeout" + routerReply.Status;
-                            ThreadPool.QueueUserWorkItem(WriteToFile, msg);
+                            var msg = macAddr + ";" + DateTime.Now.ToString("HH:mm:ss") + ";" + DateTime.Now.ToString("yyyy-MM-dd") + ";Timeout;Timeout" + routerReply.Status;
+                            ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { msg, resultFile });
                         } else
                         {
-                            var msg = macAddr + ";" + DateTime.Now.ToString("HH:mm:ss") + ";Timeout;" + googleReserve.Status + ";Not Tested";
-                            ThreadPool.QueueUserWorkItem(WriteToFile, msg);
+                            var msg = macAddr + ";" + DateTime.Now.ToString("HH:mm:ss") + ";" + DateTime.Now.ToString("yyyy-MM-dd") + ";Timeout;" + googleReserve.Status + ";Not Tested";
+                            ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { msg, resultFile });
                         }
                     } else
                     {
-                        var msg = macAddr + ";" + DateTime.Now.ToString("HH:mm:ss") + ";" + googleReply.Status + ";Not Tested;Not Tested";
-                        ThreadPool.QueueUserWorkItem(WriteToFile, msg);
+                        var msg = macAddr + ";" + DateTime.Now.ToString("HH:mm:ss") + ";" + DateTime.Now.ToString("yyyy-MM-dd") + ";" + googleReply.Status + ";Not Tested;Not Tested";
+                        ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { msg, resultFile });
                     }
 
                     Thread.Sleep(pingInterval);
@@ -166,14 +175,47 @@ namespace Neasure
             this.Close();
         }
 
+        private void backgroundWorkerSpeedTest_DoWork(object sender, DoWorkEventArgs e)
+        {
+            
+        }
+
+        private void backgroundWorkerSpeedTest_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            try
+            {
+                var client = new System.Net.WebClient();
+                var sw = new System.Diagnostics.Stopwatch();
+                const string tempFile = "temp.tmp";
+
+                ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { "Starting New Speed Test...", speedTestFile });
+                sw.Start();
+                client.DownloadFile("https://speed.hetzner.de/1GB.bin", tempFile);
+                sw.Stop();
+
+                FileInfo fileInfo = new FileInfo(tempFile);
+                long speed = fileInfo.Length / sw.Elapsed.Seconds;
+
+                ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { "Download duration: " + sw.Elapsed, speedTestFile });
+                ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { "File size: " + fileInfo.Length.ToString("N0"), speedTestFile });
+                ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { "Download duration: " + speed.ToString("N0"), speedTestFile });
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         // The File Writer Function working in the Background
 
-        public static void WriteToFile(object msg)
+        public static void WriteToFile(object state)
         {
+            object[] array = state as object[];
+            string msg = array[0].ToString();
+            string file = array[1].ToString();
+
             lock (writeLock)
             {
-                var file = resultFile;
-
                 using (var writer = File.AppendText((string)file))
                 {
                     writer.WriteLine((string)msg);
@@ -187,6 +229,11 @@ namespace Neasure
         {
             backgroundWorkerPing.CancelAsync();
             timer.Enabled = false;
+        }
+
+        private void HandleSpeedTimer(object sender, ElapsedEventArgs e)
+        {
+            backgroundWorkerSpeedTest.RunWorkerAsync();
         }
 
         private void timeoutTimerHandle(object sender, ElapsedEventArgs e)
