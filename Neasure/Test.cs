@@ -19,7 +19,7 @@ namespace Neasure
         private static string speedTestFile;
         private System.Timers.Timer timer;
         private System.Timers.Timer timeoutTimer = new System.Timers.Timer(1000);
-        private System.Timers.Timer speedTestTimer = new System.Timers.Timer(3600000);
+        private System.Timers.Timer speedTestTimer;
 
         private DateTime timeTestStartet;
 
@@ -100,6 +100,7 @@ namespace Neasure
             timer.Enabled = true;
 
             // Initialize Speed Test Timer
+            speedTestTimer = new System.Timers.Timer(900000);
             speedTestTimer.AutoReset = true;
             speedTestTimer.Elapsed += HandleSpeedTimer;
             speedTestTimer.Enabled = true;
@@ -167,6 +168,7 @@ namespace Neasure
 
         private void backgroundWorkerPing_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            speedTestTimer.Stop();
             progressBar.Value = 0;
             lblTestRunning.Text = "Test Complete!";
 
@@ -177,13 +179,9 @@ namespace Neasure
 
         private void backgroundWorkerSpeedTest_DoWork(object sender, DoWorkEventArgs e)
         {
-            
-        }
-
-        private void backgroundWorkerSpeedTest_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
             try
             {
+                // Create new Temporary File and Download File while stopping time
                 var client = new System.Net.WebClient();
                 var sw = new System.Diagnostics.Stopwatch();
                 const string tempFile = "temp.tmp";
@@ -200,10 +198,16 @@ namespace Neasure
                 ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { "File size: " + fileInfo.Length.ToString("N0"), speedTestFile });
                 ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { "Download duration: " + speed.ToString("N0"), speedTestFile });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void backgroundWorkerSpeedTest_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            // Delete Temporary File
+            File.Delete("temp.tmp");
         }
 
         // The File Writer Function working in the Background
