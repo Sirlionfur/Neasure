@@ -151,11 +151,13 @@ namespace Neasure
                         } else
                         {
                             var msg = macAddr + ";" + DateTime.Now.ToString("HH:mm:ss") + ";" + DateTime.Now.ToString("yyyy-MM-dd") + ";Timeout;" + googleReserve.Status + ";Not Tested";
+                            status.updateLatency(googleReserve.RoundtripTime);
                             ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { msg, resultFile });
                         }
                     } else
                     {
                         var msg = macAddr + ";" + DateTime.Now.ToString("HH:mm:ss") + ";" + DateTime.Now.ToString("yyyy-MM-dd") + ";" + googleReply.Status + ";Not Tested;Not Tested";
+                        status.updateLatency(googleReply.RoundtripTime);
                         ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { msg, resultFile });
                     }
 

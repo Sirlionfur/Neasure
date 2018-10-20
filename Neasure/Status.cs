@@ -16,13 +16,13 @@ namespace Neasure
         // Initialize Variables
 
         public int averageTimeoutTime { get; set; }
-        public int averageLatency { get; set; }
+        public long averageLatency { get; set; }
 
         public int timeouts { get; set; } = 0;
         public int timeoutTime { get; set; } = 0;
         public int timeoutsInRow { get; set; } = 0;
-        public int highestLatency { get; set; } = 0;
-        public int lowestLatency { get; set; } = 0;
+        public long highestLatency { get; set; } = 0;
+        public long lowestLatency { get; set; } = 0;
 
         public bool dataSent { get; set; } = false;
 
@@ -53,11 +53,20 @@ namespace Neasure
 
                 lblHighestLatency.Text = highestLatency.ToString() + " ms";
                 lblLowestLatency.Text = lowestLatency.ToString() + " ms";
+                lblAverageLatency.Text = averageLatency.ToString() + " ms";
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Failed to Update Data:\n" + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        public void updateLatency(long latency)
+        {
+            if(latency >= highestLatency) { highestLatency = latency; }
+            if(latency <= lowestLatency) { lowestLatency = latency; }
+
+            averageLatency = highestLatency - lowestLatency;
         }
 
         private void updateData(object sender, ElapsedEventArgs e)
@@ -75,8 +84,15 @@ namespace Neasure
                 lblTimeoutsInRow.Text = timeoutsInRow.ToString();
                 lblAverageDowntime.Text = averageTimeoutTime.ToString();
 
-                lblHighestLatency.Text = highestLatency.ToString() + " ms";
-                lblLowestLatency.Text = lowestLatency.ToString() + " ms";
+                if (InvokeRequired)
+                {
+                    BeginInvoke(new Action(() =>
+                    {
+                        lblHighestLatency.Text = highestLatency.ToString() + " ms";
+                        lblLowestLatency.Text = lowestLatency.ToString() + " ms";
+                        lblAverageLatency.Text = averageLatency.ToString() + " ms";
+                    }));
+                }
             }
             catch (Exception ex)
             {
