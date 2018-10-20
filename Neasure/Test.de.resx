@@ -133,6 +133,12 @@
   <data name="lblRemainingTime.Text" xml:space="preserve">
     <value>Restliche Zeit:</value>
   </data>
+  <data name="lblTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>163, 13</value>
+  </data>
+  <data name="lblTime.Text" xml:space="preserve">
+    <value>Der Test hat noch nicht gestartet</value>
+  </data>
   <data name="btnStatus.Text" xml:space="preserve">
     <value>Test Status</value>
   </data>

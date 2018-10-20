@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Timers;
 using System.Windows.Forms;
@@ -28,6 +29,8 @@ namespace Neasure
         private Status status = new Status();
         private bool timeoutRow = false;
         private int retries = 0;
+
+        private int TimeMiliseconds = 0;
 
         public Test(int pingInterval, int mode)
         {
@@ -62,7 +65,6 @@ namespace Neasure
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            var TimeMiliseconds = 0;
             btnStart.Enabled = false;
             currentAdress = "8.8.8.8";
 
@@ -161,6 +163,16 @@ namespace Neasure
                         ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { msg, resultFile });
                     }
 
+                    if (InvokeRequired)
+                    {
+                        BeginInvoke(new Action(() =>
+                        {
+                            TimeMiliseconds -= 1000;
+                            progressBar.Value = progressBar.Value + pingInterval;
+                            lblTime.Text = Math.Truncate(TimeSpan.FromMilliseconds(TimeMiliseconds).TotalHours * 100) / 100 + " Hours left";
+                        }));
+                    }
+                    
                     Thread.Sleep(pingInterval);
                 }
                 catch (Exception ex)
