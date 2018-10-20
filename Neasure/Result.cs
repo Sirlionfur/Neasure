@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using Neasure.Properties;
 
 namespace Neasure
 {
@@ -16,15 +9,15 @@ namespace Neasure
         {
             InitializeComponent();
 
-            lblTimeouts.Text = status.timeouts.ToString();
-            lblTimeoutsInRow.Text = status.timeoutsInRow.ToString();
-            lblTimeoutTime.Text = status.timeoutTime.ToString() + " Seconds";
+            lblTimeouts.Text = status.Timeouts.ToString();
+            lblTimeoutsInRow.Text = status.TimeoutsInRow.ToString();
+            lblTimeoutTime.Text = status.TimeoutTime + Resources.Seconds;
 
-            lblHighestLatency.Text = status.highestLatency.ToString() + " ms";
-            lblLowestLatency.Text = status.lowestLatency.ToString() + " ms";
+            lblHighestLatency.Text = status.HighestLatency + Resources.Milliseconds_Short;
+            lblLowestLatency.Text = status.LowestLatency + Resources.Milliseconds_Short;
 
-            lblAverageDowntime.Text = status.averageTimeoutTime.ToString();
-            lblAverageLatency.Text = status.averageLatency.ToString() + " ms";
+            lblAverageDowntime.Text = status.AverageTimeoutTime.ToString();
+            lblAverageLatency.Text = status.AverageLatency + Resources.Milliseconds_Short;
         }
     }
 }

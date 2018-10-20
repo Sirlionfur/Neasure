@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
+using Neasure.Properties;
 
 namespace Neasure
 {
     public partial class Main : Form
     {
-        private int pingInt;
-
         public Main()
         {
             InitializeComponent();
@@ -17,17 +16,17 @@ namespace Neasure
             // Check if any mode was chosen
             if (!radioBtnShortTest.Checked && !radioBtnLongTest.Checked && !radioBtnExtremeTest.Checked && !radioBtnDebug.Checked)
             {
-                MessageBox.Show("You need to pick a Mode to Test", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Resources.Error_PickMode, Resources.ErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Deactivating the Button, so the Test cannot be started twice accidently
+            // Deactivating the Button, so the Test cannot be started twice accidentally
             btnStart.Enabled = false;
 
             try
             {
                 // Check which mode the user chose
-                int radioSelection = 0;
+                var radioSelection = 0;
 
                 if (radioBtnShortTest.Checked) { radioSelection = 0; }
                 if (radioBtnLongTest.Checked) { radioSelection = 1; }
@@ -36,14 +35,13 @@ namespace Neasure
                
                 // Start the Test
 
-                Test test = new Test(1000, radioSelection);
+                var test = new Test(1000, radioSelection);
                 test.Show();
             } catch(Exception ex)
             {
                 // Abort if there was an Error
-                MessageBox.Show("An Error Occured:\n" + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Resources.Error_General + ex.Message, Resources.ErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 btnStart.Enabled = true;
-                return;
             }
 
         }
@@ -55,7 +53,7 @@ namespace Neasure
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            About about = new About();
+            var about = new About();
             about.Show();
         }
     }

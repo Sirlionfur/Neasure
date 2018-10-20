@@ -1,36 +1,35 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.NetworkInformation;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Timers;
 using System.Windows.Forms;
+using Neasure.Properties;
+using Timer = System.Timers.Timer;
 
 namespace Neasure
 {
     public partial class Test : Form
     {
         // Initialize Values
-        private string currentAdress;
-        private int pingInterval;
-        private int mode;
-        private static string resultFile;
-        private static string speedTestFile;
-        private System.Timers.Timer timer;
-        private System.Timers.Timer timeoutTimer = new System.Timers.Timer(1000);
-        private System.Timers.Timer speedTestTimer;
+        internal string CurrentAdress;
+        private readonly int _pingInterval;
+        private readonly int _mode;
+        private static string _resultFile;
+        private Timer _timer;
+        private Timer _speedTestTimer;
 
-        private DateTime timeTestStartet;
+        private DateTime _timeTestStartet;
 
-        private static object writeLock = new object();
+        private static readonly object WriteLock = new object();
 
-        private Status status = new Status();
-        private bool timeoutRow = false;
-        private int retries = 0;
+        private readonly Status _status = new Status();
 
-        private int TimeMiliseconds = 0;
+        private int _timeMiliseconds;
 
         public Test(int pingInterval, int mode)
         {
@@ -42,77 +41,74 @@ namespace Neasure
             backgroundWorkerPing.WorkerSupportsCancellation = true;
 
             // Set the Private Values to the Values given from the Main Form
-            this.pingInterval = pingInterval;
-            this.mode = mode;
+            _pingInterval = pingInterval;
+            _mode = mode;
         }
 
         private void btnAbort_Click(object sender, EventArgs e)
         {
             // Asking user if he really wants to abort the Test
-            var result = MessageBox.Show("All your Measurement Data will be Deletet\nDo you really want to Continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            var result = MessageBox.Show(Resources.Warning_DataDeleted, Resources.WarningTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
                 backgroundWorkerPing.CancelAsync();
                 Thread.Sleep(700);
-                this.Close();
+                Close();
             }
         }
 
         private void btnStatus_Click(object sender, EventArgs e)
         {
-            status.Show();
+            _status.Show();
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
             btnStart.Enabled = false;
-            currentAdress = "8.8.8.8";
+            CurrentAdress = "8.8.8.8";
 
             // Set Timers Time according to the Mode
-            switch (mode)
+            switch (_mode)
             {
                 case 0:
-                    TimeMiliseconds = 3600000;
+                    _timeMiliseconds = 3600000;
                     break;
 
                 case 1:
-                    TimeMiliseconds = 86400000;
+                    _timeMiliseconds = 86400000;
                     break;
 
                 case 2:
-                    TimeMiliseconds = 604800000;
+                    _timeMiliseconds = 604800000;
                     break;
                 case 3:
-                    TimeMiliseconds = 30000;
+                    _timeMiliseconds = 30000;
                     break;
 
                 default:
-                    MessageBox.Show("Error while Checking for Chosen Mode", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Resources.Error_CheckingChosenMode, Resources.ErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     btnStart.Enabled = true;
                     return;
             }
 
-            lblTestRunning.Text = "Your Test is Running...";
+            lblTestRunning.Text = Resources.Info_TestRunning;
 
             // Initialize Proper Timer for chosen mode
-            progressBar.Maximum = TimeMiliseconds;
-            timer = new System.Timers.Timer(TimeMiliseconds);
-            timer.AutoReset = false;
-            timer.Elapsed += HandleTimer;
-            timer.Enabled = true;
+            progressBar.Maximum = _timeMiliseconds;
+            _timer = new Timer(_timeMiliseconds) {AutoReset = false};
+            _timer.Elapsed += HandleTimer;
+            _timer.Enabled = true;
 
             // Initialize Speed Test Timer
-            speedTestTimer = new System.Timers.Timer(900000);
-            speedTestTimer.AutoReset = true;
-            speedTestTimer.Elapsed += HandleSpeedTimer;
-            speedTestTimer.Enabled = true;
+            _speedTestTimer = new Timer(900000) {AutoReset = true};
+            _speedTestTimer.Elapsed += HandleSpeedTimer;
+            _speedTestTimer.Enabled = true;
 
             // Get Date and Time, Create new File and Write the Header
-            timeTestStartet = DateTime.Now;
-            resultFile = @"result_" + timeTestStartet.ToString("yyyyMMddTHHmmss") + ".txt";
-            speedTestFile = @"speed_test_results_" + timeTestStartet.ToString("yyyyMMddTHHmmss") + ".txt";
-            ThreadPool.QueueUserWorkItem(WriteToFile, new object[] {"Mac Adress;Test Time;Test Date;Ping 8.8.8.8;Ping 8.8.4.4;Ping Default Gateway;Latency", resultFile});
-            ThreadPool.QueueUserWorkItem(WriteToFile, new object[] {"Download Duration;File Size;Dowload Speed", resultFile });
+            _timeTestStartet = DateTime.Now;
+            _resultFile = @"result_" + _timeTestStartet.ToString("yyyyMMddTHHmmss") + ".txt";
+            ThreadPool.QueueUserWorkItem(WriteToFile, new object[] {"Mac Address;Test Time;Test Date;Ping 8.8.8.8;Ping 8.8.4.4;Ping Default Gateway;Latency", _resultFile});
+            ThreadPool.QueueUserWorkItem(WriteToFile, new object[] {"Download Duration;File Size;Download Speed", _resultFile });
 
 
             // Start the Test
@@ -121,7 +117,7 @@ namespace Neasure
 
         private void backgroundWorkerPing_DoWork(object sender, DoWorkEventArgs e)
         {
-            while (timer.Enabled)
+            while (_timer.Enabled)
             {
                 try
                 {
@@ -138,59 +134,59 @@ namespace Neasure
                                          select props.Address.ToString();
 
 
-                    Ping myPing = new Ping();
+                    var myPing = new Ping();
 
-                    PingReply googleReply = myPing.Send("8.8.8.8", pingInterval);
+                    var googleReply = myPing.Send("8.8.8.8", _pingInterval);
                     if (googleReply.Status != IPStatus.Success)
                     {
-                        PingReply googleReserve = myPing.Send("8.8.4.4", pingInterval);
+                        var googleReserve = myPing.Send("8.8.4.4", _pingInterval);
                         if (googleReserve.Status != IPStatus.Success)
                         {
-                            PingReply routerReply = myPing.Send(defaultGateway.ToString(), pingInterval);
+                            var routerReply = myPing.Send(defaultGateway.ToString(), _pingInterval);
 
                             var msg = macAddr + ";" + DateTime.Now.ToString("HH:mm:ss") + ";" + DateTime.Now.ToString("yyyy-MM-dd") + ";Timeout;Timeout" + routerReply.Status + ";" + routerReply.RoundtripTime;
-                            ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { msg, resultFile });
+                            ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { msg, _resultFile });
                         } else
                         {
                             var msg = macAddr + ";" + DateTime.Now.ToString("HH:mm:ss") + ";" + DateTime.Now.ToString("yyyy-MM-dd") + ";Timeout;" + googleReserve.Status + ";Not Tested;" + googleReserve.RoundtripTime;
-                            status.updateLatency(googleReserve.RoundtripTime);
-                            ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { msg, resultFile });
+                            _status.UpdateLatency(googleReserve.RoundtripTime);
+                            ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { msg, _resultFile });
                         }
                     } else
                     {
                         var msg = macAddr + ";" + DateTime.Now.ToString("HH:mm:ss") + ";" + DateTime.Now.ToString("yyyy-MM-dd") + ";" + googleReply.Status + ";Not Tested;Not Tested;" + googleReply.RoundtripTime;
-                        status.updateLatency(googleReply.RoundtripTime);
-                        ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { msg, resultFile });
+                        _status.UpdateLatency(googleReply.RoundtripTime);
+                        ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { msg, _resultFile });
                     }
 
                     if (InvokeRequired)
                     {
                         BeginInvoke(new Action(() =>
                         {
-                            TimeMiliseconds -= 1000;
-                            progressBar.Value = progressBar.Value + pingInterval;
-                            lblTime.Text = Math.Truncate(TimeSpan.FromMilliseconds(TimeMiliseconds).TotalHours * 100) / 100 + " Hours left";
+                            _timeMiliseconds -= 1000;
+                            progressBar.Value = progressBar.Value + _pingInterval;
+                            lblTime.Text = Math.Truncate(TimeSpan.FromMilliseconds(_timeMiliseconds).TotalHours * 100) / 100 + Resources.HoursLeft;
                         }));
                     }
                     
-                    Thread.Sleep(pingInterval);
+                    Thread.Sleep(_pingInterval);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error while Pinging:\n" + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Resources.Error_Ping + ex.Message, Resources.ErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
         private void backgroundWorkerPing_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            speedTestTimer.Stop();
+            _speedTestTimer.Stop();
             progressBar.Value = 0;
-            lblTestRunning.Text = "Test Complete!";
+            lblTestRunning.Text = Resources.Info_TestComplete;
 
-            Result result = new Result(status);
+            var result = new Result(_status);
             result.Show();
-            this.Close();
+            Close();
         }
 
         private void backgroundWorkerSpeedTest_DoWork(object sender, DoWorkEventArgs e)
@@ -198,18 +194,18 @@ namespace Neasure
             try
             {
                 // Create new Temporary File and Download File while stopping time
-                var client = new System.Net.WebClient();
-                var sw = new System.Diagnostics.Stopwatch();
+                var client = new WebClient();
+                var sw = new Stopwatch();
                 const string tempFile = "temp.tmp";
 
                 sw.Start();
                 client.DownloadFile("https://speed.hetzner.de/100MB.bin", tempFile);
                 sw.Stop();
 
-                FileInfo fileInfo = new FileInfo(tempFile);
-                long speed = fileInfo.Length / sw.Elapsed.Seconds;
+                var fileInfo = new FileInfo(tempFile);
+                var speed = fileInfo.Length / sw.Elapsed.Seconds;
 
-                ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { sw.Elapsed + ";" + fileInfo.Length.ToString("N0") + ";" + speed.ToString("N0"), resultFile });
+                ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { sw.Elapsed + ";" + fileInfo.Length.ToString("N0") + ";" + speed.ToString("N0"), _resultFile });
             }
             catch (Exception ex)
             {
@@ -227,35 +223,31 @@ namespace Neasure
 
         public static void WriteToFile(object state)
         {
-            object[] array = state as object[];
-            string msg = array[0].ToString();
-            string file = array[1].ToString();
+            var array = state as object[];
+            if (array == null) return;
+            var msg = array[0].ToString();
+            var file = array[1].ToString();
 
-            lock (writeLock)
+            lock (WriteLock)
             {
-                using (var writer = File.AppendText((string)file))
+                using (var writer = File.AppendText(file))
                 {
-                    writer.WriteLine((string)msg);
+                    writer.WriteLine(msg);
                 }
             }
         }
 
-        // Declaring the Events for the Timer
+        // Declaring the Events for the Timers
 
         private void HandleTimer(object sender, ElapsedEventArgs e)
         {
             backgroundWorkerPing.CancelAsync();
-            timer.Enabled = false;
+            _timer.Enabled = false;
         }
 
         private void HandleSpeedTimer(object sender, ElapsedEventArgs e)
         {
             backgroundWorkerSpeedTest.RunWorkerAsync();
-        }
-
-        private void timeoutTimerHandle(object sender, ElapsedEventArgs e)
-        {
-            status.timeoutTime++;
         }
     }
 }

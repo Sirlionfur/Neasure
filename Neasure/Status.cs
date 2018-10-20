@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Timers;
 using System.Windows.Forms;
+using Neasure.Properties;
 
 namespace Neasure
 {
@@ -8,88 +9,84 @@ namespace Neasure
     {
         // Initialize Variables
 
-        public int averageTimeoutTime { get; set; }
-        public long averageLatency { get; set; }
+        public int AverageTimeoutTime { get; set; }
+        public long AverageLatency { get; set; }
 
-        public int timeouts { get; set; } = 0;
-        public int timeoutTime { get; set; } = 0;
-        public int timeoutsInRow { get; set; } = 0;
-        public long highestLatency { get; set; } = 0;
-        public long lowestLatency { get; set; } = 0;
-
-        public bool dataSent { get; set; } = false;
+        public int Timeouts { get; set; } = 0;
+        public int TimeoutTime { get; set; } = 0;
+        public int TimeoutsInRow { get; set; } = 0;
+        public long HighestLatency { get; set; }
+        public long LowestLatency { get; set; } = 1000;
 
         public Status()
         {
             InitializeComponent();
 
-            System.Timers.Timer timer = new System.Timers.Timer(1000);
-            timer.AutoReset = true;
-            timer.Elapsed += updateData;
+            var timer = new System.Timers.Timer(1000) {AutoReset = true};
+            timer.Elapsed += UpdateData;
             timer.Enabled = true;
 
             try
             {
                 // Update the Data given from the ongoing Test
 
-                if (timeoutsInRow != 0)
+                if (TimeoutsInRow != 0)
                 {
-                    averageTimeoutTime = timeoutTime / timeoutsInRow;
+                    AverageTimeoutTime = TimeoutTime / TimeoutsInRow;
                 } else
                 {
-                    lblAverageDowntime.Text = "None";
+                    lblAverageDowntime.Text = Resources.None;
                 }
-                lblTimeouts.Text = timeouts.ToString();
-                lblTimeoutTime.Text = timeoutTime.ToString();
-                lblTimeoutsInRow.Text = timeoutsInRow.ToString();
-                lblAverageDowntime.Text = averageTimeoutTime.ToString() + " Seconds";
+                lblTimeouts.Text = Timeouts.ToString();
+                lblTimeoutTime.Text = TimeoutTime.ToString();
+                lblTimeoutsInRow.Text = TimeoutsInRow.ToString();
+                lblAverageDowntime.Text = AverageTimeoutTime + Resources.Seconds;
 
-                lblHighestLatency.Text = highestLatency.ToString() + " ms";
-                lblLowestLatency.Text = lowestLatency.ToString() + " ms";
-                lblAverageLatency.Text = averageLatency.ToString() + " ms";
+                lblHighestLatency.Text = HighestLatency + Resources.Milliseconds_Short;
+                lblLowestLatency.Text = LowestLatency + Resources.Milliseconds_Short;
+                lblAverageLatency.Text = AverageLatency + Resources.Milliseconds_Short;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed to Update Data:\n" + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Resources.Error_UpdateData + ex.Message, Resources.ErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        public void updateLatency(long latency)
+        public void UpdateLatency(long latency)
         {
-            if(latency >= highestLatency) { highestLatency = latency; }
-            if(latency <= lowestLatency) { lowestLatency = latency; }
-
-            averageLatency = highestLatency - lowestLatency;
+            if(latency >= HighestLatency) { HighestLatency = latency; }
+            if(latency <= LowestLatency) { LowestLatency = latency; }
+            
+            AverageLatency = HighestLatency - LowestLatency;
         }
 
-        private void updateData(object sender, ElapsedEventArgs e)
+        private void UpdateData(object sender, ElapsedEventArgs e)
         {
             try
             {
                 // Update the Data given from the ongoing Test
-
-                if (timeoutsInRow != 0)
-                {
-                    averageTimeoutTime = timeoutTime / timeoutsInRow;
-                }
-                lblTimeouts.Text = timeouts.ToString();
-                lblTimeoutTime.Text = timeoutTime.ToString();
-                lblTimeoutsInRow.Text = timeoutsInRow.ToString();
-                lblAverageDowntime.Text = averageTimeoutTime.ToString();
-
                 if (InvokeRequired)
                 {
                     BeginInvoke(new Action(() =>
                     {
-                        lblHighestLatency.Text = highestLatency.ToString() + " ms";
-                        lblLowestLatency.Text = lowestLatency.ToString() + " ms";
-                        lblAverageLatency.Text = averageLatency.ToString() + " ms";
+                        if (TimeoutsInRow != 0)
+                        {
+                            AverageTimeoutTime = TimeoutTime / TimeoutsInRow;
+                        }
+                        lblTimeouts.Text = Timeouts.ToString();
+                        lblTimeoutTime.Text = TimeoutTime.ToString();
+                        lblTimeoutsInRow.Text = TimeoutsInRow.ToString();
+                        lblAverageDowntime.Text = AverageTimeoutTime.ToString();
+
+                        lblHighestLatency.Text = HighestLatency + Resources.Milliseconds_Short;
+                        lblLowestLatency.Text = LowestLatency + Resources.Milliseconds_Short;
+                        lblAverageLatency.Text = AverageLatency + Resources.Milliseconds_Short;
                     }));
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed to Update Data:\n" + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Resources.Error_UpdateData + ex.Message, Resources.ErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
