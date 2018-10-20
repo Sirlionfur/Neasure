@@ -118,70 +118,58 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lblAverageDowntime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>136, 163</value>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>252, 29</value>
   </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 13</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Dies ist in Entwicklung</value>
   </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Durchschn. Ausfallzeit:</value>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 13</value>
   </data>
-  <data name="lblLowestLatency.Location" type="System.Drawing.Point, System.Drawing">
-    <value>388, 100</value>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Neasure (c) von Sirlionfur</value>
   </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 13</value>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>Neasure ist lizenziert unter einer Creative Commons Namensnennung - Nicht kommerziell - Keine Bearbeitungen 4.0 International Lizenz.
+
+Sie sollten eine Kopie der Lizenz bekommen haben. Falls nicht, gehen Sie zu http://creativecommons.org/licenses/by-nc-nd/4.0/.</value>
   </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Niedrigste Latenz:</value>
-  </data>
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 13</value>
-  </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>Höchste Latenz:</value>
-  </data>
-  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 13</value>
-  </data>
-  <data name="label11.Text" xml:space="preserve">
-    <value>Durchschn. Latenz:</value>
-  </data>
-  <data name="lblTimeoutsInRow.Location" type="System.Drawing.Point, System.Drawing">
-    <value>136, 100</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 13</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Timeouts in einer Folge:</value>
-  </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 13</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Timeout Zeit:</value>
-  </data>
-  <data name="lblTimeouts.Location" type="System.Drawing.Point, System.Drawing">
-    <value>113, 42</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 13</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Timeouts Gesamt:</value>
-  </data>
-  <data name="lblResultsWhere.Location" type="System.Drawing.Point, System.Drawing">
-    <value>249, 163</value>
-  </data>
-  <data name="lblResultsWhere.Size" type="System.Drawing.Size, System.Drawing">
-    <value>339, 13</value>
-  </data>
-  <data name="lblResultsWhere.Text" xml:space="preserve">
-    <value>Deine Ergenbnisse wurden im Neasure Stammverzeichnis gespeichert.</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Neasure - Ergebnis</value>
+  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
   </data>
 </root>

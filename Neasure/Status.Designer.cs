@@ -60,6 +60,7 @@
             // 
             resources.ApplyResources(this.lblTimeouts, "lblTimeouts");
             this.lblTimeouts.Name = "lblTimeouts";
+            this.lblTimeouts.Click += new System.EventHandler(this.lblTimeouts_Click);
             // 
             // lblTimeoutTime
             // 

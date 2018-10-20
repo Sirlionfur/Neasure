@@ -92,5 +92,10 @@ namespace Neasure
                 MessageBox.Show("Failed to Update Data:\n" + ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void lblTimeouts_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

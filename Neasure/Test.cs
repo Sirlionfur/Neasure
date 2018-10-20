@@ -109,7 +109,7 @@ namespace Neasure
             timeTestStartet = DateTime.Now;
             resultFile = @"result_" + timeTestStartet.ToString("yyyyMMddTHHmmss") + ".txt";
             speedTestFile = @"speed_test_results_" + timeTestStartet.ToString("yyyyMMddTHHmmss") + ".txt";
-            ThreadPool.QueueUserWorkItem(WriteToFile, new object[] {"Mac Adress;Test Time;Test Date;Ping 8.8.8.8;Ping 8.8.4.4;Ping Default Gateway", resultFile});
+            ThreadPool.QueueUserWorkItem(WriteToFile, new object[] {"Mac Adress;Test Time;Test Date;Ping 8.8.8.8;Ping 8.8.4.4;Ping Default Gateway;Latency", resultFile});
             ThreadPool.QueueUserWorkItem(WriteToFile, new object[] {"Download Duration;File Size;Dowload Speed", resultFile });
 
 
@@ -146,17 +146,17 @@ namespace Neasure
                         {
                             PingReply routerReply = myPing.Send(defaultGateway.ToString(), pingInterval);
 
-                            var msg = macAddr + ";" + DateTime.Now.ToString("HH:mm:ss") + ";" + DateTime.Now.ToString("yyyy-MM-dd") + ";Timeout;Timeout" + routerReply.Status;
+                            var msg = macAddr + ";" + DateTime.Now.ToString("HH:mm:ss") + ";" + DateTime.Now.ToString("yyyy-MM-dd") + ";Timeout;Timeout" + routerReply.Status + ";" + routerReply.RoundtripTime;
                             ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { msg, resultFile });
                         } else
                         {
-                            var msg = macAddr + ";" + DateTime.Now.ToString("HH:mm:ss") + ";" + DateTime.Now.ToString("yyyy-MM-dd") + ";Timeout;" + googleReserve.Status + ";Not Tested";
+                            var msg = macAddr + ";" + DateTime.Now.ToString("HH:mm:ss") + ";" + DateTime.Now.ToString("yyyy-MM-dd") + ";Timeout;" + googleReserve.Status + ";Not Tested;" + googleReserve.RoundtripTime;
                             status.updateLatency(googleReserve.RoundtripTime);
                             ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { msg, resultFile });
                         }
                     } else
                     {
-                        var msg = macAddr + ";" + DateTime.Now.ToString("HH:mm:ss") + ";" + DateTime.Now.ToString("yyyy-MM-dd") + ";" + googleReply.Status + ";Not Tested;Not Tested";
+                        var msg = macAddr + ";" + DateTime.Now.ToString("HH:mm:ss") + ";" + DateTime.Now.ToString("yyyy-MM-dd") + ";" + googleReply.Status + ";Not Tested;Not Tested;" + googleReply.RoundtripTime;
                         status.updateLatency(googleReply.RoundtripTime);
                         ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { msg, resultFile });
                     }
