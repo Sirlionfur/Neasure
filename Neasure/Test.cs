@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -22,6 +23,7 @@ namespace Neasure
         private static string _resultFile;
         private Timer _timer;
         private Timer _speedTestTimer;
+        private List<string> _speedTests = new List<string>();
 
         private DateTime _timeTestStartet;
 
@@ -108,7 +110,7 @@ namespace Neasure
             _timeTestStartet = DateTime.Now;
             _resultFile = @"result_" + _timeTestStartet.ToString("yyyyMMddTHHmmss") + ".txt";
             ThreadPool.QueueUserWorkItem(WriteToFile, new object[] {"Mac Address;Test Time;Test Date;Ping 8.8.8.8;Ping 8.8.4.4;Ping Default Gateway;Latency", _resultFile});
-            ThreadPool.QueueUserWorkItem(WriteToFile, new object[] {"Download Duration;File Size;Download Speed", _resultFile });
+            _speedTests.Add("Download Duration;File Size;Download Speed");
 
 
             // Start the Test
@@ -146,6 +148,7 @@ namespace Neasure
 
                             var msg = macAddr + ";" + DateTime.Now.ToString("HH:mm:ss") + ";" + DateTime.Now.ToString("yyyy-MM-dd") + ";Timeout;Timeout" + routerReply.Status + ";" + routerReply.RoundtripTime;
                             ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { msg, _resultFile });
+                            _status.Timeouts++;
                         } else
                         {
                             var msg = macAddr + ";" + DateTime.Now.ToString("HH:mm:ss") + ";" + DateTime.Now.ToString("yyyy-MM-dd") + ";Timeout;" + googleReserve.Status + ";Not Tested;" + googleReserve.RoundtripTime;
@@ -181,6 +184,11 @@ namespace Neasure
         private void backgroundWorkerPing_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             _speedTestTimer.Stop();
+            foreach (var test in _speedTests)
+            {
+                ThreadPool.QueueUserWorkItem(WriteToFile, new object[] {test, _resultFile});
+            }
+            
             progressBar.Value = 0;
             lblTestRunning.Text = Resources.Info_TestComplete;
 
@@ -205,7 +213,7 @@ namespace Neasure
                 var fileInfo = new FileInfo(tempFile);
                 var speed = fileInfo.Length / sw.Elapsed.Seconds;
 
-                ThreadPool.QueueUserWorkItem(WriteToFile, new object[] { sw.Elapsed + ";" + fileInfo.Length.ToString("N0") + ";" + speed.ToString("N0"), _resultFile });
+                _speedTests.Add(sw.Elapsed + ";" + fileInfo.Length.ToString("N0") + ";" + speed.ToString("N0"));
             }
             catch (Exception ex)
             {
@@ -221,7 +229,7 @@ namespace Neasure
 
         // The File Writer Function working in the Background
 
-        public static void WriteToFile(object state)
+        private static void WriteToFile(object state)
         {
             var array = state as object[];
             if (array == null) return;

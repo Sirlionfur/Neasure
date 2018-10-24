@@ -12,7 +12,7 @@ namespace Neasure
         public int AverageTimeoutTime { get; set; }
         public long AverageLatency { get; set; }
 
-        public int Timeouts { get; set; } = 0;
+        public int Timeouts { get; set; }
         public int TimeoutTime { get; set; } = 0;
         public int TimeoutsInRow { get; set; } = 0;
         public long HighestLatency { get; set; }
