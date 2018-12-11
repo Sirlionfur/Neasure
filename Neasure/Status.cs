@@ -18,6 +18,9 @@ namespace Neasure
         public long HighestLatency { get; set; }
         public long LowestLatency { get; set; } = 1000;
 
+        private long Latencies;
+        private int LatencyCount;
+
         public Status()
         {
             InitializeComponent();
@@ -56,8 +59,11 @@ namespace Neasure
         {
             if(latency >= HighestLatency) { HighestLatency = latency; }
             if(latency <= LowestLatency) { LowestLatency = latency; }
-            
-            AverageLatency = HighestLatency - LowestLatency;
+
+            Latencies += latency;
+            LatencyCount++;
+
+            AverageLatency = Latencies / LatencyCount;
         }
 
         private void UpdateData(object sender, ElapsedEventArgs e)
