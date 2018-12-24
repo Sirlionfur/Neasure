@@ -17,8 +17,9 @@ namespace Neasure
         public int TimeoutsInRow { get; set; } = 0;
         public long HighestLatency { get; set; }
         public long LowestLatency { get; set; } = 1000;
+	public int SuccessfulPings { get; set; } = 0;
 
-        private long Latencies;
+	private long Latencies;
         private int LatencyCount;
 
         public Status()

@@ -18,6 +18,8 @@ namespace Neasure
 
             lblAverageDowntime.Text = status.AverageTimeoutTime.ToString();
             lblAverageLatency.Text = status.AverageLatency + Resources.Milliseconds_Short;
+
+	    //TODO Close the Whole Application when window closed?
         }
     }
 }
