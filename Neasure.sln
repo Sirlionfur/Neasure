@@ -40,8 +40,6 @@ Global
 		$1.DirectoryNamespaceAssociation = PrefixedHierarchical
 		$0.TextStylePolicy = $2
 		$2.FileWidth = 80
-		$2.TabWidth = 8
-		$2.IndentWidth = 8
 		$2.scope = text/x-csharp
 		$0.CSharpFormattingPolicy = $3
 		$3.IndentSwitchSection = False
@@ -60,9 +58,8 @@ Global
 		$3.NewLineForMembersInAnonymousTypes = False
 		$3.NewLineForClausesInQuery = False
 		$3.SpacingAfterMethodDeclarationName = True
-		$3.SpaceAfterMethodCallName = True
-		$3.SpaceBeforeOpenSquareBracket = True
 		$3.scope = text/x-csharp
+		$3.SpaceAfterComma = False
 		$0.TextStylePolicy = $4
 		$4.FileWidth = 80
 		$4.TabsToSpaces = True
