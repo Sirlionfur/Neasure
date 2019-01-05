@@ -19,7 +19,7 @@ namespace Neasure.Properties {
     // -Klasse über ein Tool wie ResGen oder Visual Studio automatisch generiert.
     // Um einen Member hinzuzufügen oder zu entfernen, bearbeiten Sie die .ResX-Datei und führen dann ResGen
     // mit der /str-Option erneut aus, oder Sie erstellen Ihr VS-Projekt neu.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -61,11 +61,41 @@ namespace Neasure.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Are you sure you want to Exit the Application?
+        /// ähnelt.
+        /// </summary>
+        internal static string Confirm_Exit {
+            get {
+                return ResourceManager.GetString("Confirm_Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Error while Checking for Chosen Mode ähnelt.
         /// </summary>
         internal static string Error_CheckingChosenMode {
             get {
                 return ResourceManager.GetString("Error_CheckingChosenMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error while trying to Establish Firebase Connection:
+        /// ähnelt.
+        /// </summary>
+        internal static string Error_FirebaseConnect {
+            get {
+                return ResourceManager.GetString("Error_FirebaseConnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error Sending Data to Firebase
+        /// ähnelt.
+        /// </summary>
+        internal static string Error_FirebaseSend {
+            get {
+                return ResourceManager.GetString("Error_FirebaseSend", resourceCulture);
             }
         }
         
@@ -141,6 +171,15 @@ namespace Neasure.Properties {
         internal static string Info_TestRunning {
             get {
                 return ResourceManager.GetString("Info_TestRunning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Info ähnelt.
+        /// </summary>
+        internal static string InfoTitle {
+            get {
+                return ResourceManager.GetString("InfoTitle", resourceCulture);
             }
         }
         

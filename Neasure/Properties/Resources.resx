@@ -160,4 +160,19 @@ Do you really want to Continue?</value>
   <data name="HoursLeft" xml:space="preserve">
     <value> Hours left</value>
   </data>
+  <data name="Error_FirebaseConnect" xml:space="preserve">
+    <value>Error while trying to Establish Firebase Connection:
+</value>
+  </data>
+  <data name="Error_FirebaseSend" xml:space="preserve">
+    <value>Error Sending Data to Firebase
+</value>
+  </data>
+  <data name="InfoTitle" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="Confirm_Exit" xml:space="preserve">
+    <value>Are you sure you want to Exit the Application?
+</value>
+  </data>
 </root>

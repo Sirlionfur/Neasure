@@ -2,8 +2,12 @@
 using Neasure.Properties;
 
 namespace Neasure {
-	public partial class Result : Form {
-		public Result (Status status)
+	public partial class Result : Form
+    {
+        private string _pingFile;
+        private string _speedFile;
+
+		public Result (Status status, string pingFile, string speedFile)
 		{
 			InitializeComponent();
 
@@ -16,16 +20,25 @@ namespace Neasure {
 
 			lblAverageDowntime.Text = status.AverageTimeoutTime.ToString();
 			lblAverageLatency.Text = status.AverageLatency + Resources.Milliseconds_Short;
-		}
+
+            _pingFile = pingFile;
+            _speedFile = speedFile;
+        }
 
 		protected override void OnFormClosing (FormClosingEventArgs e)
 		{
-			DialogResult dialog = MessageBox.Show("Are you sure you want to Exit the Application?\nNon Saved Data will be Deleted!","Warning",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+			DialogResult dialog = MessageBox.Show(Resources.Confirm_Exit,Resources.WarningTitle,MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
 			if (dialog == DialogResult.Yes) {
 				Application.Exit();
 			} else {
 				e.Cancel = true;
 			}
 		}
-	}
+
+        private void btnFormOpen_Click(object sender, System.EventArgs e)
+        {
+            FirebaseForm form = new FirebaseForm(_pingFile, _speedFile);
+            form.Show();
+        }
+    }
 }

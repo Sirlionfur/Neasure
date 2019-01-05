@@ -45,6 +45,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblResult = new System.Windows.Forms.Label();
             this.lblResultsWhere = new System.Windows.Forms.Label();
+            this.btnFormOpen = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblAverageDowntime
@@ -127,10 +128,18 @@
             resources.ApplyResources(this.lblResultsWhere, "lblResultsWhere");
             this.lblResultsWhere.Name = "lblResultsWhere";
             // 
+            // btnFormOpen
+            // 
+            resources.ApplyResources(this.btnFormOpen, "btnFormOpen");
+            this.btnFormOpen.Name = "btnFormOpen";
+            this.btnFormOpen.UseVisualStyleBackColor = true;
+            this.btnFormOpen.Click += new System.EventHandler(this.btnFormOpen_Click);
+            // 
             // Result
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnFormOpen);
             this.Controls.Add(this.lblResultsWhere);
             this.Controls.Add(this.lblAverageDowntime);
             this.Controls.Add(this.label7);
@@ -173,5 +182,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblResult;
         private System.Windows.Forms.Label lblResultsWhere;
+        private System.Windows.Forms.Button btnFormOpen;
     }
 }

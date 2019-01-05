@@ -118,79 +118,53 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lblAverageDowntime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>136, 163</value>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 13</value>
   </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 13</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Internet Anbieter:</value>
   </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Durchschn. Ausfallzeit:</value>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 13</value>
   </data>
-  <data name="lblLowestLatency.Location" type="System.Drawing.Point, System.Drawing">
-    <value>388, 100</value>
-  </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 13</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Niedrigste Latenz:</value>
-  </data>
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 13</value>
-  </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>Höchste Latenz:</value>
-  </data>
-  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 13</value>
-  </data>
-  <data name="label11.Text" xml:space="preserve">
-    <value>Durchschn. Latenz:</value>
-  </data>
-  <data name="lblTimeoutsInRow.Location" type="System.Drawing.Point, System.Drawing">
-    <value>136, 100</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 13</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Timeouts in einer Folge:</value>
-  </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 13</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Timeout Zeit:</value>
-  </data>
-  <data name="lblTimeouts.Location" type="System.Drawing.Point, System.Drawing">
-    <value>113, 42</value>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Land:</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 13</value>
+    <value>35, 13</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Timeouts Gesamt:</value>
+    <value>Stadt:</value>
   </data>
-  <data name="lblResult.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 33</value>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 13</value>
   </data>
-  <data name="lblResult.Text" xml:space="preserve">
-    <value>Test Ergebnis</value>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Internet Typ:</value>
   </data>
-  <data name="lblResultsWhere.Location" type="System.Drawing.Point, System.Drawing">
-    <value>249, 163</value>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 13</value>
   </data>
-  <data name="lblResultsWhere.Size" type="System.Drawing.Size, System.Drawing">
-    <value>339, 13</value>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Internet Gesch.:</value>
   </data>
-  <data name="lblResultsWhere.Text" xml:space="preserve">
-    <value>Deine Ergenbnisse wurden im Neasure Stammverzeichnis gespeichert.</value>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>Die Daten werden Anonym nach Firebase gesendet.
+Das Eingeben/Senden der Daten ist Optional.</value>
   </data>
-  <data name="btnFormOpen.Text" xml:space="preserve">
-    <value>Daten nach Firebase senden (Anonym)</value>
+  <data name="btnSend.Text" xml:space="preserve">
+    <value>Senden</value>
+  </data>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Abbruch</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 13</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Postleitzahl:</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Neasure - Ergebnis</value>
+    <value>Neasure - Nach Firebase Senden</value>
   </data>
 </root>

@@ -18,7 +18,8 @@ namespace Neasure {
 		internal string CurrentAdress;
 		private readonly int _pingInterval;
 		private readonly int _mode;
-		private static string _resultFile;
+		private static string _pingFile;
+        private static string _speedFile;
 		private Timer _timer;
 		private Timer _speedTestTimer;
 		private List<string> _speedTests = new List<string>();
@@ -105,8 +106,9 @@ namespace Neasure {
 
 			// Get Date and Time, Create new File and Write the Header
 			_timeTestStartet = DateTime.Now;
-			_resultFile = @"result_" + _timeTestStartet.ToString("yyyyMMddTHHmmss") + ".txt";
-			ThreadPool.QueueUserWorkItem(WriteToFile,new object[] { "Mac Address;Test Time;Test Date;Ping 8.8.8.8;Ping 8.8.4.4;Ping Default Gateway;Latency",_resultFile });
+			_pingFile = @"result_" + _timeTestStartet.ToString("yyyyMMddTHHmmss") + ".txt";
+            _speedFile = @"speed_" + _timeTestStartet.ToString("yyyyMMddTHHmmss") + ".txt";
+			ThreadPool.QueueUserWorkItem(WriteToFile,new object[] { "Mac Address;Test Time;Test Date;Ping 8.8.8.8;Ping 8.8.4.4;Ping Default Gateway;Latency",_pingFile });
 			_speedTests.Add("Download Duration;File Size;Download Speed");
 
 
@@ -134,18 +136,18 @@ namespace Neasure {
 							var routerReply = myPing.Send(GetDefaultGateway().ToString(),_pingInterval);
 
 							var msg = macAddr + ";" + DateTime.Now.ToString("HH:mm:ss") + ";" + DateTime.Now.ToString("yyyy-MM-dd") + ";Timeout;Timeout;" + routerReply.Status + ";" + routerReply.RoundtripTime;
-							ThreadPool.QueueUserWorkItem(WriteToFile,new object[] { msg,_resultFile });
+							ThreadPool.QueueUserWorkItem(WriteToFile,new object[] { msg,_pingFile });
 							_status.Timeouts++;
 						} else {
 							var msg = macAddr + ";" + DateTime.Now.ToString("HH:mm:ss") + ";" + DateTime.Now.ToString("yyyy-MM-dd") + ";Timeout;" + googleReserve.Status + ";Not Tested;" + googleReserve.RoundtripTime;
 							_status.UpdateLatency(googleReserve.RoundtripTime);
-							ThreadPool.QueueUserWorkItem(WriteToFile,new object[] { msg,_resultFile });
+							ThreadPool.QueueUserWorkItem(WriteToFile,new object[] { msg,_pingFile });
 						}
 					} else {
 						_status.SuccessfulPings++;
 						var msg = macAddr + ";" + DateTime.Now.ToString("HH:mm:ss") + ";" + DateTime.Now.ToString("yyyy-MM-dd") + ";" + googleReply.Status + ";Not Tested;Not Tested;" + googleReply.RoundtripTime;
 						_status.UpdateLatency(googleReply.RoundtripTime);
-						ThreadPool.QueueUserWorkItem(WriteToFile,new object[] { msg,_resultFile });
+						ThreadPool.QueueUserWorkItem(WriteToFile,new object[] { msg,_pingFile });
 					}
 
 					if (InvokeRequired) {
@@ -168,13 +170,13 @@ namespace Neasure {
 		{
 			_speedTestTimer.Stop();
 			foreach (var test in _speedTests) {
-				ThreadPool.QueueUserWorkItem(WriteToFile,new object[] { test,_resultFile });
+				ThreadPool.QueueUserWorkItem(WriteToFile,new object[] { test,_speedFile });
 			}
 
 			progressBar.Value = 0;
 			lblTestRunning.Text = Resources.Info_TestComplete;
 
-			var result = new Result(_status);
+			var result = new Result(_status, _pingFile, _speedFile);
 			result.Show();
 			_manualExit = false;
 			Close();

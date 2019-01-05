@@ -124,9 +124,8 @@
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 13</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label11.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Average Latency:</value>
   </data>
   <data name="&gt;&gt;label6.Name" xml:space="preserve">
     <value>label6</value>
@@ -144,6 +143,7 @@
   <data name="&gt;&gt;label5.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lblTimeoutsInRow.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -189,9 +189,6 @@
   <data name="lblTimeoutTime.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 13</value>
-  </data>
   <data name="lblLowestLatency.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -199,10 +196,10 @@
     <value>True</value>
   </data>
   <data name="&gt;&gt;lblResultsWhere.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -214,6 +211,9 @@
     <value>Neasure - Result</value>
   </data>
   <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label11.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="lblTimeouts.Text" xml:space="preserve">
@@ -229,7 +229,10 @@
     <value>lblLowestLatency</value>
   </data>
   <data name="&gt;&gt;lblTimeoutsInRow.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
+  </data>
+  <data name="lblTimeoutsInRow.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="label7.TabIndex" type="System.Int32, mscorlib">
     <value>36</value>
@@ -261,6 +264,9 @@
   <data name="lblLowestLatency.TabIndex" type="System.Int32, mscorlib">
     <value>35</value>
   </data>
+  <data name="&gt;&gt;btnFormOpen.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="lblTimeoutTime.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 13</value>
   </data>
@@ -279,20 +285,29 @@
   <data name="lblAverageDowntime.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="lblResult.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 21.75pt</value>
+  </data>
   <data name="&gt;&gt;label5.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <data name="btnFormOpen.Location" type="System.Drawing.Point, System.Drawing">
+    <value>294, 137</value>
+  </data>
   <data name="&gt;&gt;lblTimeoutTime.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="&gt;&gt;label7.Name" xml:space="preserve">
     <value>label7</value>
+  </data>
+  <data name="lblAverageLatency.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 13</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
   </data>
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 13</value>
@@ -318,8 +333,8 @@
   <data name="&gt;&gt;lblResultsWhere.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="lblResult.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 21.75pt</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>Result</value>
   </data>
   <data name="&gt;&gt;label4.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -328,13 +343,13 @@
     <value>True</value>
   </data>
   <data name="&gt;&gt;lblAverageLatency.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="lblHighestLatency.Text" xml:space="preserve">
     <value>lblHighestLatency</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="lblHighestLatency.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -345,17 +360,23 @@
   <data name="&gt;&gt;label7.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="btnFormOpen.TabIndex" type="System.Int32, mscorlib">
+    <value>39</value>
+  </data>
   <data name="&gt;&gt;lblTimeoutTime.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="lblResultsWhere.TabIndex" type="System.Int32, mscorlib">
     <value>38</value>
   </data>
-  <data name="&gt;&gt;lblHighestLatency.Type" xml:space="preserve">
+  <data name="&gt;&gt;label9.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label11.Text" xml:space="preserve">
-    <value>Average Latency:</value>
+  <data name="&gt;&gt;btnFormOpen.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblHighestLatency.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="lblTimeoutTime.Location" type="System.Drawing.Point, System.Drawing">
     <value>101, 73</value>
@@ -394,10 +415,13 @@
     <value>True</value>
   </data>
   <data name="&gt;&gt;lblAverageDowntime.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="label9.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="btnFormOpen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>294, 23</value>
   </data>
   <data name="&gt;&gt;lblTimeoutsInRow.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -429,11 +453,14 @@
   <data name="label9.Text" xml:space="preserve">
     <value>Highest Latency:</value>
   </data>
+  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="lblTimeouts.Location" type="System.Drawing.Point, System.Drawing">
     <value>101, 42</value>
   </data>
   <data name="&gt;&gt;lblLowestLatency.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
     <value>15, 42</value>
@@ -442,7 +469,7 @@
     <value>119, 100</value>
   </data>
   <data name="&gt;&gt;lblHighestLatency.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="lblResult.Text" xml:space="preserve">
     <value>Test Result</value>
@@ -453,14 +480,8 @@
   <data name="lblTimeoutTime.Text" xml:space="preserve">
     <value>lblTimeoutTime</value>
   </data>
-  <data name="lblTimeouts.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label6.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>Result</value>
+  <data name="&gt;&gt;btnFormOpen.Name" xml:space="preserve">
+    <value>btnFormOpen</value>
   </data>
   <data name="lblAverageDowntime.Text" xml:space="preserve">
     <value>lblAverageDowntime</value>
@@ -475,7 +496,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="&gt;&gt;lblAverageLatency.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -499,7 +520,7 @@
     <value>True</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="&gt;&gt;lblLowestLatency.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -509,6 +530,9 @@
   </data>
   <data name="lblLowestLatency.Location" type="System.Drawing.Point, System.Drawing">
     <value>383, 100</value>
+  </data>
+  <data name="&gt;&gt;btnFormOpen.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>85, 13</value>
@@ -528,8 +552,8 @@
   <data name="&gt;&gt;lblAverageDowntime.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="lblAverageLatency.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 13</value>
+  <data name="lblTimeouts.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="lblResult.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 9</value>
@@ -546,17 +570,17 @@
   <data name="&gt;&gt;lblResult.Name" xml:space="preserve">
     <value>lblResult</value>
   </data>
-  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="btnFormOpen.Text" xml:space="preserve">
+    <value>Send Data to Firebase (Anonymous)</value>
   </data>
   <data name="lblAverageLatency.Location" type="System.Drawing.Point, System.Drawing">
     <value>388, 42</value>
   </data>
   <data name="&gt;&gt;lblTimeouts.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="lblResultsWhere.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -568,16 +592,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="&gt;&gt;lblResult.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>74, 13</value>
   </data>
-  <data name="lblTimeoutsInRow.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>91, 13</value>
   </data>
   <data name="&gt;&gt;lblAverageLatency.Name" xml:space="preserve">
     <value>lblAverageLatency</value>
@@ -603,8 +627,8 @@
   <data name="&gt;&gt;lblAverageDowntime.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;label9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label6.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
     <value>291, 100</value>
@@ -617,5 +641,8 @@
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>de</value>
   </metadata>
 </root>
