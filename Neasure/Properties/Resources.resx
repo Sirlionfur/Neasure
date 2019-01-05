@@ -175,4 +175,10 @@ Do you really want to Continue?</value>
     <value>Are you sure you want to Exit the Application?
 </value>
   </data>
+  <data name="Info_UploadComplete" xml:space="preserve">
+    <value>Upload Complete</value>
+  </data>
+  <data name="Info_UploadUnsuccessful" xml:space="preserve">
+    <value>Upload Unsuccessful</value>
+  </data>
 </root>

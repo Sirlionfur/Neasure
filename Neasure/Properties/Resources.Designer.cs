@@ -175,6 +175,24 @@ namespace Neasure.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Upload Complete ähnelt.
+        /// </summary>
+        internal static string Info_UploadComplete {
+            get {
+                return ResourceManager.GetString("Info_UploadComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Upload Unsuccessful ähnelt.
+        /// </summary>
+        internal static string Info_UploadUnsuccessful {
+            get {
+                return ResourceManager.GetString("Info_UploadUnsuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Info ähnelt.
         /// </summary>
         internal static string InfoTitle {

@@ -38,12 +38,12 @@ namespace Neasure
 
                 if (send.Result == 1)
                 {
-                    MessageBox.Show("Upload Complete", Resources.InfoTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(Resources.Info_UploadComplete, Resources.InfoTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Close();
                 }
                 else
                 {
-                    MessageBox.Show("Upload Unsuccessful", Resources.InfoTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(Resources.Info_UploadUnsuccessful, Resources.InfoTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Close();
                 }
             }

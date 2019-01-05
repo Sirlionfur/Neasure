@@ -11,14 +11,9 @@ using Neasure.Properties;
 namespace Neasure {
 	public class Database
     {
-        private static Random _random = new Random();
         private string _bucket = "neasure-5ed3e.appspot.com";
 
-		public Database()
-		{
-		}
-
-		public async Task<int> Send(string country, string city, int postalCode, string ISP, string type, string speed, string pingFile, string speedFile)
+        public async Task<int> Send(string country, string city, int postalCode, string isp, string type, string speed, string pingFile, string speedFile)
 		{
             try
             {
@@ -55,7 +50,7 @@ namespace Neasure {
                     country = country,
                     city = city,
                     postalCode = postalCode,
-                    ISP = ISP,
+                    ISP = isp,
                     type = type,
                     speed = speed
                 };
