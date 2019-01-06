@@ -550,7 +550,7 @@ Sending/Entering any Data is completely Optional.</value>
     <value>85, 59</value>
   </data>
   <data name="textPostal.MaxLength" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>16</value>
   </data>
   <data name="textPostal.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
@@ -570,6 +570,9 @@ Sending/Entering any Data is completely Optional.</value>
   <data name="&gt;&gt;textPostal.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>de</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

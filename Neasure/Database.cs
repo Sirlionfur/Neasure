@@ -13,7 +13,7 @@ namespace Neasure {
     {
         private string _bucket = "neasure-5ed3e.appspot.com";
 
-        public async Task<int> Send(string country, string city, int postalCode, string isp, string type, string speed, string pingFile, string speedFile)
+        public async Task<int> Send(string country, string city, string postalCode, string isp, string type, string speed, string pingFile, string speedFile)
 		{
             try
             {

@@ -29,14 +29,7 @@ namespace Neasure
                 btnSend.Enabled = false;
                 btnCancel.Enabled = false;
 
-                var postalInt = 0;
-
-                if (!String.IsNullOrEmpty(textPostal.Text))
-                {
-                    postalInt = Int32.Parse(textPostal.Text);
-                }
-
-                var send = db.Send(dropdownCountry.Text, textCity.Text, postalInt, dropdownISP.Text,
+                var send = db.Send(dropdownCountry.Text, textCity.Text, textPostal.Text, dropdownISP.Text,
                     dropdownType.Text, dropdownSpeed.Text, _pingFile, _speedFile);
 
                 await send;
