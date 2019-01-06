@@ -117,70 +117,68 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Error_CheckingChosenMode" xml:space="preserve">
-    <value>Error while Checking for Chosen Mode:
-</value>
+  <data name="Confirm_Exit" xml:space="preserve">
+    <value>Wollen sie wirklich die Software Schließen?</value>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
     <value>ERROR</value>
   </data>
-  <data name="Error_Ping" xml:space="preserve">
-    <value>Error while Pinging:
+  <data name="Error_CheckingChosenMode" xml:space="preserve">
+    <value>Error bei der überprüfung beim ausgewählten Test Modus:
 </value>
-  </data>
-  <data name="Info_TestComplete" xml:space="preserve">
-    <value>Test Complete!</value>
-  </data>
-  <data name="Info_TestRunning" xml:space="preserve">
-    <value>Your Test is Running...</value>
-  </data>
-  <data name="Warning_DataDeleted" xml:space="preserve">
-    <value>Do you really want to Exit the Application?</value>
-  </data>
-  <data name="WarningTitle" xml:space="preserve">
-    <value>Warning</value>
-  </data>
-  <data name="Seconds" xml:space="preserve">
-    <value> Seconds</value>
-  </data>
-  <data name="Milliseconds_Short" xml:space="preserve">
-    <value> ms</value>
-  </data>
-  <data name="Error_PickMode" xml:space="preserve">
-    <value>You need to pick a Mode to Test</value>
-  </data>
-  <data name="Error_General" xml:space="preserve">
-    <value>An Error Occured:
-</value>
-  </data>
-  <data name="None" xml:space="preserve">
-    <value>None</value>
-  </data>
-  <data name="Error_UpdateData" xml:space="preserve">
-    <value>Failed to Update Data:
-</value>
-  </data>
-  <data name="HoursLeft" xml:space="preserve">
-    <value> Hours left</value>
   </data>
   <data name="Error_FirebaseConnect" xml:space="preserve">
-    <value>Error while trying to Establish Firebase Connection:
+    <value>Error beim Verbinden von Firebase:
 </value>
   </data>
   <data name="Error_FirebaseSend" xml:space="preserve">
-    <value>Error Sending Data to Firebase
+    <value>Error beim senden der Daten an Firebase:
 </value>
+  </data>
+  <data name="Error_General" xml:space="preserve">
+    <value>Ein Error ist entstanden:
+</value>
+  </data>
+  <data name="Error_PickMode" xml:space="preserve">
+    <value>Sie müssen ein Modus zum Testen auswählen</value>
+  </data>
+  <data name="Error_Ping" xml:space="preserve">
+    <value>Error beim Ping:
+</value>
+  </data>
+  <data name="Error_UpdateData" xml:space="preserve">
+    <value>Aktualisierung der Daten fehlgeschlagen:
+</value>
+  </data>
+  <data name="HoursLeft" xml:space="preserve">
+    <value> Stunden übrig</value>
   </data>
   <data name="InfoTitle" xml:space="preserve">
     <value>Info</value>
   </data>
-  <data name="Confirm_Exit" xml:space="preserve">
-    <value>Are you sure you want to Exit the Application?</value>
+  <data name="Info_TestComplete" xml:space="preserve">
+    <value>Test Fertig!</value>
+  </data>
+  <data name="Info_TestRunning" xml:space="preserve">
+    <value>Test läuft...</value>
   </data>
   <data name="Info_UploadComplete" xml:space="preserve">
-    <value>Upload Complete</value>
+    <value>Upload fertig</value>
   </data>
   <data name="Info_UploadUnsuccessful" xml:space="preserve">
-    <value>Upload Unsuccessful</value>
+    <value>Upload fehler</value>
+  </data>
+  <data name="Milliseconds_Short" xml:space="preserve">
+    <value> ms</value>
+  </data>
+  <data name="Seconds" xml:space="preserve">
+    <value> Sekunden</value>
+  </data>
+  <data name="WarningTitle" xml:space="preserve">
+    <value>Warnung</value>
+  </data>
+  <data name="Warning_DataDeleted" xml:space="preserve">
+    <value>Wollen sie wirklich die Software Schließen?
+Nicht übermittelte Firebase Daten können nicht mehr übermittelt werden</value>
   </data>
 </root>

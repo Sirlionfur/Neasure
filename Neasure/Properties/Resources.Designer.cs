@@ -22,7 +22,7 @@ namespace Neasure.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Neasure.Properties {
         ///   Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Neasure.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace Neasure.Properties {
         ///   Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,19 +61,19 @@ namespace Neasure.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Are you sure you want to Exit the Application?
-        /// ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Are you sure you want to Exit the Application? ähnelt.
         /// </summary>
-        internal static string Confirm_Exit {
+        public static string Confirm_Exit {
             get {
                 return ResourceManager.GetString("Confirm_Exit", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Error while Checking for Chosen Mode ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error while Checking for Chosen Mode:
+        /// ähnelt.
         /// </summary>
-        internal static string Error_CheckingChosenMode {
+        public static string Error_CheckingChosenMode {
             get {
                 return ResourceManager.GetString("Error_CheckingChosenMode", resourceCulture);
             }
@@ -83,7 +83,7 @@ namespace Neasure.Properties {
         ///   Sucht eine lokalisierte Zeichenfolge, die Error while trying to Establish Firebase Connection:
         /// ähnelt.
         /// </summary>
-        internal static string Error_FirebaseConnect {
+        public static string Error_FirebaseConnect {
             get {
                 return ResourceManager.GetString("Error_FirebaseConnect", resourceCulture);
             }
@@ -93,7 +93,7 @@ namespace Neasure.Properties {
         ///   Sucht eine lokalisierte Zeichenfolge, die Error Sending Data to Firebase
         /// ähnelt.
         /// </summary>
-        internal static string Error_FirebaseSend {
+        public static string Error_FirebaseSend {
             get {
                 return ResourceManager.GetString("Error_FirebaseSend", resourceCulture);
             }
@@ -103,7 +103,7 @@ namespace Neasure.Properties {
         ///   Sucht eine lokalisierte Zeichenfolge, die An Error Occured:
         /// ähnelt.
         /// </summary>
-        internal static string Error_General {
+        public static string Error_General {
             get {
                 return ResourceManager.GetString("Error_General", resourceCulture);
             }
@@ -112,27 +112,27 @@ namespace Neasure.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die You need to pick a Mode to Test ähnelt.
         /// </summary>
-        internal static string Error_PickMode {
+        public static string Error_PickMode {
             get {
                 return ResourceManager.GetString("Error_PickMode", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Error while Pinging:\n
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error while Pinging:
         /// ähnelt.
         /// </summary>
-        internal static string Error_Ping {
+        public static string Error_Ping {
             get {
                 return ResourceManager.GetString("Error_Ping", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Failed to Update Data:\n
+        ///   Sucht eine lokalisierte Zeichenfolge, die Failed to Update Data:
         /// ähnelt.
         /// </summary>
-        internal static string Error_UpdateData {
+        public static string Error_UpdateData {
             get {
                 return ResourceManager.GetString("Error_UpdateData", resourceCulture);
             }
@@ -141,7 +141,7 @@ namespace Neasure.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die ERROR ähnelt.
         /// </summary>
-        internal static string ErrorTitle {
+        public static string ErrorTitle {
             get {
                 return ResourceManager.GetString("ErrorTitle", resourceCulture);
             }
@@ -150,7 +150,7 @@ namespace Neasure.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die  Hours left ähnelt.
         /// </summary>
-        internal static string HoursLeft {
+        public static string HoursLeft {
             get {
                 return ResourceManager.GetString("HoursLeft", resourceCulture);
             }
@@ -159,7 +159,7 @@ namespace Neasure.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Test Complete! ähnelt.
         /// </summary>
-        internal static string Info_TestComplete {
+        public static string Info_TestComplete {
             get {
                 return ResourceManager.GetString("Info_TestComplete", resourceCulture);
             }
@@ -168,7 +168,7 @@ namespace Neasure.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Your Test is Running... ähnelt.
         /// </summary>
-        internal static string Info_TestRunning {
+        public static string Info_TestRunning {
             get {
                 return ResourceManager.GetString("Info_TestRunning", resourceCulture);
             }
@@ -177,7 +177,7 @@ namespace Neasure.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Upload Complete ähnelt.
         /// </summary>
-        internal static string Info_UploadComplete {
+        public static string Info_UploadComplete {
             get {
                 return ResourceManager.GetString("Info_UploadComplete", resourceCulture);
             }
@@ -186,7 +186,7 @@ namespace Neasure.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Upload Unsuccessful ähnelt.
         /// </summary>
-        internal static string Info_UploadUnsuccessful {
+        public static string Info_UploadUnsuccessful {
             get {
                 return ResourceManager.GetString("Info_UploadUnsuccessful", resourceCulture);
             }
@@ -195,7 +195,7 @@ namespace Neasure.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Info ähnelt.
         /// </summary>
-        internal static string InfoTitle {
+        public static string InfoTitle {
             get {
                 return ResourceManager.GetString("InfoTitle", resourceCulture);
             }
@@ -204,7 +204,7 @@ namespace Neasure.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die  ms ähnelt.
         /// </summary>
-        internal static string Milliseconds_Short {
+        public static string Milliseconds_Short {
             get {
                 return ResourceManager.GetString("Milliseconds_Short", resourceCulture);
             }
@@ -213,7 +213,7 @@ namespace Neasure.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die None ähnelt.
         /// </summary>
-        internal static string None {
+        public static string None {
             get {
                 return ResourceManager.GetString("None", resourceCulture);
             }
@@ -222,17 +222,16 @@ namespace Neasure.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die  Seconds ähnelt.
         /// </summary>
-        internal static string Seconds {
+        public static string Seconds {
             get {
                 return ResourceManager.GetString("Seconds", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die All your Measurement Data will be Deleted
-        ///Do you really want to Continue? ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Do you really want to Exit the Application? ähnelt.
         /// </summary>
-        internal static string Warning_DataDeleted {
+        public static string Warning_DataDeleted {
             get {
                 return ResourceManager.GetString("Warning_DataDeleted", resourceCulture);
             }
@@ -241,7 +240,7 @@ namespace Neasure.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Warning ähnelt.
         /// </summary>
-        internal static string WarningTitle {
+        public static string WarningTitle {
             get {
                 return ResourceManager.GetString("WarningTitle", resourceCulture);
             }
