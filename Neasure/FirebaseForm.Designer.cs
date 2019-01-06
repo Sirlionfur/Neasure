@@ -54,7 +54,6 @@
             // 
             // dropdownISP
             // 
-            resources.ApplyResources(this.dropdownISP, "dropdownISP");
             this.dropdownISP.FormattingEnabled = true;
             this.dropdownISP.Items.AddRange(new object[] {
             resources.GetString("dropdownISP.Items"),
@@ -62,6 +61,7 @@
             resources.GetString("dropdownISP.Items2"),
             resources.GetString("dropdownISP.Items3"),
             resources.GetString("dropdownISP.Items4")});
+            resources.ApplyResources(this.dropdownISP, "dropdownISP");
             this.dropdownISP.Name = "dropdownISP";
             // 
             // label2
@@ -71,12 +71,12 @@
             // 
             // dropdownCountry
             // 
-            resources.ApplyResources(this.dropdownCountry, "dropdownCountry");
             this.dropdownCountry.FormattingEnabled = true;
             this.dropdownCountry.Items.AddRange(new object[] {
             resources.GetString("dropdownCountry.Items"),
             resources.GetString("dropdownCountry.Items1"),
             resources.GetString("dropdownCountry.Items2")});
+            resources.ApplyResources(this.dropdownCountry, "dropdownCountry");
             this.dropdownCountry.Name = "dropdownCountry";
             this.dropdownCountry.SelectedIndexChanged += new System.EventHandler(this.dropdownCountry_SelectedIndexChanged);
             // 
@@ -97,13 +97,13 @@
             // 
             // dropdownType
             // 
-            resources.ApplyResources(this.dropdownType, "dropdownType");
             this.dropdownType.FormattingEnabled = true;
             this.dropdownType.Items.AddRange(new object[] {
             resources.GetString("dropdownType.Items"),
             resources.GetString("dropdownType.Items1"),
             resources.GetString("dropdownType.Items2"),
             resources.GetString("dropdownType.Items3")});
+            resources.ApplyResources(this.dropdownType, "dropdownType");
             this.dropdownType.Name = "dropdownType";
             // 
             // label5
@@ -113,7 +113,6 @@
             // 
             // dropdownSpeed
             // 
-            resources.ApplyResources(this.dropdownSpeed, "dropdownSpeed");
             this.dropdownSpeed.FormattingEnabled = true;
             this.dropdownSpeed.Items.AddRange(new object[] {
             resources.GetString("dropdownSpeed.Items"),
@@ -124,6 +123,7 @@
             resources.GetString("dropdownSpeed.Items5"),
             resources.GetString("dropdownSpeed.Items6"),
             resources.GetString("dropdownSpeed.Items7")});
+            resources.ApplyResources(this.dropdownSpeed, "dropdownSpeed");
             this.dropdownSpeed.Name = "dropdownSpeed";
             // 
             // label6

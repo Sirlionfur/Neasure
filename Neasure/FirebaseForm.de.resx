@@ -148,6 +148,12 @@
   <data name="label5.Text" xml:space="preserve">
     <value>Internet Gesch.:</value>
   </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>31, 13</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Kbps</value>
+  </data>
   <data name="richTextBox1.Text" xml:space="preserve">
     <value>Die Daten werden Anonym nach Firebase gesendet.
 Das Eingeben/Senden der Daten ist Optional.</value>
