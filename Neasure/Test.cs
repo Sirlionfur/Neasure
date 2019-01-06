@@ -49,13 +49,11 @@ namespace Neasure {
 
 		private void btnAbort_Click (object sender,EventArgs e)
 		{
-			// Asking user if he really wants to abort the Test
-			var result = MessageBox.Show(Resources.Warning_DataDeleted,Resources.WarningTitle,MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
-			if (result == DialogResult.Yes) {
-				backgroundWorkerPing.CancelAsync();
-				Thread.Sleep(700);
-				Application.Exit();
-			}
+            // Asking user if he really wants to abort the Test
+            var result = MessageBox.Show(Resources.Warning_DataDeleted,Resources.WarningTitle,MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes) {
+                Environment.Exit(1);
+            }
 		}
 
 		private void btnStatus_Click (object sender,EventArgs e)
@@ -178,6 +176,7 @@ namespace Neasure {
 
 			var result = new Result(_status, _pingFile, _speedFile);
 			result.Show();
+            _status.Close();
 			_manualExit = false;
 			Close();
 		}
@@ -251,11 +250,20 @@ namespace Neasure {
 				.FirstOrDefault();
 		}
 
-		protected override void OnFormClosed (FormClosedEventArgs e)
-		{
-			if (_manualExit) {
-				Application.Exit();
-			}
-		}
-	}
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            // Asking user if he really wants to abort the Test
+            if (!_manualExit) return;
+            var result = MessageBox.Show(Resources.Warning_DataDeleted,Resources.WarningTitle,MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+            e.Cancel = (result == DialogResult.No);
+        }
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            if (_manualExit)
+            {
+                Environment.Exit(1);
+            }
+        }
+    }
 }

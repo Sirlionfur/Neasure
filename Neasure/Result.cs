@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using Neasure.Properties;
 
 namespace Neasure {
@@ -29,7 +30,7 @@ namespace Neasure {
 		{
 			DialogResult dialog = MessageBox.Show(Resources.Confirm_Exit,Resources.WarningTitle,MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
 			if (dialog == DialogResult.Yes) {
-				Application.Exit();
+				Environment.Exit(1);
 			} else {
 				e.Cancel = true;
 			}

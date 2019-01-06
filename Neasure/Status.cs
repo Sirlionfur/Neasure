@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Timers;
 using System.Windows.Forms;
 using Neasure.Properties;
@@ -97,9 +98,10 @@ namespace Neasure
             }
         }
 
-        private void lblTimeouts_Click(object sender, EventArgs e)
+        protected override void OnFormClosing(FormClosingEventArgs e)
         {
-
+            this.Hide();
+            e.Cancel = true;
         }
     }
 }
