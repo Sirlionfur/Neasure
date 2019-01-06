@@ -163,7 +163,7 @@
     <value>Test läuft...</value>
   </data>
   <data name="Info_UploadComplete" xml:space="preserve">
-    <value>Upload fertig</value>
+    <value>Upload abgeschlossen</value>
   </data>
   <data name="Info_UploadUnsuccessful" xml:space="preserve">
     <value>Upload fehler</value>
