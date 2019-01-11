@@ -163,6 +163,28 @@
   <data name="helpToolStripMenuItem.Text" xml:space="preserve">
     <value>Hilfe</value>
   </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>214, 85</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 26</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Option 4 ist nur für Debug
+Builds</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>214, 43</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 39</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Option 3 ist in der Finalen
+Version der Software
+verfügbar
+</value>
+  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Neasure - Netzwerk Messung</value>
   </data>

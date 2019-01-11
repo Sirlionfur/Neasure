@@ -7,7 +7,12 @@ namespace Neasure {
 		public Main ()
 		{
 			InitializeComponent();
-		}
+
+            #if DEBUG
+                radioBtnDebug.Enabled = true;
+                label1.Hide();
+            #endif
+        }
 
 		private void btnStart_Click (object sender,EventArgs e)
 		{
@@ -30,10 +35,9 @@ namespace Neasure {
 				if (radioBtnDebug.Checked) { radioSelection = 3; }
 
 				// Start the Test
-
 				var test = new Test(1000,radioSelection);
 				test.Show();
-				this.Hide();
+				Hide();
 			} catch (Exception ex) {
 				// Abort if there was an Error
 				MessageBox.Show(Resources.Error_General + ex.Message,Resources.ErrorTitle,MessageBoxButtons.OK,MessageBoxIcon.Error);

@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Timers;
 using System.Windows.Forms;
@@ -13,6 +14,14 @@ using Neasure.Properties;
 using Timer = System.Timers.Timer;
 
 namespace Neasure {
+    public enum EXECUTION_STATE : uint
+    {
+        ES_AWAYMODE_REQUIRED = 0x00000040,
+        ES_CONTINUOUS = 0x80000000,
+        ES_DISPLAY_REQUIRED = 0x00000002,
+        ES_SYSTEM_REQUIRED = 0x00000001,
+    }
+
 	public partial class Test : Form {
 		// Initialize Values
 		internal string CurrentAdress;
@@ -32,6 +41,9 @@ namespace Neasure {
 		private readonly Status _status = new Status();
 
 		private int _timeMiliseconds;
+
+        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern EXECUTION_STATE SetThreadExecutionState(EXECUTION_STATE esFlags);
 
 		public Test (int pingInterval,int mode)
 		{
@@ -62,7 +74,7 @@ namespace Neasure {
 		}
 
 		private void btnStart_Click (object sender,EventArgs e)
-		{
+        {
 			btnStart.Enabled = false;
 			CurrentAdress = "8.8.8.8";
 
@@ -109,6 +121,8 @@ namespace Neasure {
 			ThreadPool.QueueUserWorkItem(WriteToFile,new object[] { "Mac Address;Test Time;Test Date;Ping 8.8.8.8;Ping 8.8.4.4;Ping Default Gateway;Latency",_pingFile });
 			_speedTests.Add("Download Duration;File Size;Download Speed");
 
+            // Setting Execution State so the Sleep Mode wont Activate while Testing
+            SetThreadExecutionState(EXECUTION_STATE.ES_CONTINUOUS | EXECUTION_STATE.ES_SYSTEM_REQUIRED);
 
 			// Start the Test
 			backgroundWorkerPing.RunWorkerAsync();
@@ -173,7 +187,11 @@ namespace Neasure {
 
 			progressBar.Value = 0;
 			lblTestRunning.Text = Resources.Info_TestComplete;
+            
+            // Reset Execution State to Default
+            SetThreadExecutionState(EXECUTION_STATE.ES_CONTINUOUS);
 
+            // Show Results and Close Current Window
 			var result = new Result(_status, _pingFile, _speedFile);
 			result.Show();
             _status.Close();

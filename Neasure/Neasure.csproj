@@ -63,11 +63,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>859D160EBB4B8227855305EB3B1159C1BAACDEC9</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>2838CBC49AE3028EB7E7AD0D4F46365ECFE31720</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>
-    </ManifestKeyFile>
+    <ManifestKeyFile>certificate.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>
