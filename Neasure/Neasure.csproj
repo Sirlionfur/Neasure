@@ -63,10 +63,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>2838CBC49AE3028EB7E7AD0D4F46365ECFE31720</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>9AC3313DD6A714C55CA9CCB026325CB3E137EFA6</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>certificate.pfx</ManifestKeyFile>
+    <ManifestKeyFile>jan.ahlert%40icloud.com.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>
@@ -245,6 +245,7 @@
     <EmbeddedResource Include="Test.resx">
       <DependentUpon>Test.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="jan.ahlert%40icloud.com.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">

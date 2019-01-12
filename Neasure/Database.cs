@@ -57,6 +57,26 @@ namespace Neasure {
 
                 await firebase.Child("data").Child(auth.User.LocalId).PostAsync(data);
 
+                // Write sent Data into File and upload to Firebase
+                using (var surveyWriter = File.AppendText("@survey_" + auth.User.LocalId))
+                {
+                    surveyWriter.WriteLine("Data Sent to Firebase: ");
+                    surveyWriter.WriteLine("Country: " + country);
+                    surveyWriter.WriteLine("City: " + city);
+                    surveyWriter.WriteLine("Postal Code: " + postalCode);
+                    surveyWriter.WriteLine("ISP: " + isp);
+                    surveyWriter.WriteLine("Internet Type: " + type);
+                    surveyWriter.WriteLine("Internet Speed: " + speed);
+                }
+
+                var surveyFile = File.Open("@survey_" + auth.User.LocalId, FileMode.Open);
+                var surveyUpload = new FirebaseStorage(_bucket, new FirebaseStorageOptions
+                {
+                    AuthTokenAsyncFactory = () => Task.FromResult(auth.FirebaseToken),
+                    ThrowOnCancel = true
+                }).Child("data").Child(auth.User.LocalId).Child("speed_" + auth.User.LocalId + ".txt").PutAsync(surveyFile); 
+                await surveyUpload;
+
                 return 1;
             }
             catch (Exception ex)

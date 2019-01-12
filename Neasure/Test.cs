@@ -14,11 +14,10 @@ using Neasure.Properties;
 using Timer = System.Timers.Timer;
 
 namespace Neasure {
+    [Flags]
     public enum EXECUTION_STATE : uint
     {
-        ES_AWAYMODE_REQUIRED = 0x00000040,
         ES_CONTINUOUS = 0x80000000,
-        ES_DISPLAY_REQUIRED = 0x00000002,
         ES_SYSTEM_REQUIRED = 0x00000001,
     }
 
@@ -116,10 +115,10 @@ namespace Neasure {
 
 			// Get Date and Time, Create new File and Write the Header
 			_timeTestStartet = DateTime.Now;
-			_pingFile = @"result_" + _timeTestStartet.ToString("yyyyMMddTHHmmss") + ".txt";
-            _speedFile = @"speed_" + _timeTestStartet.ToString("yyyyMMddTHHmmss") + ".txt";
+			_pingFile = @"result_" + _timeTestStartet.ToString("yyyyMMddT_HH-mm-ss") + ".txt";
+            _speedFile = @"speed_" + _timeTestStartet.ToString("yyyyMMddT_HH-mm-ss") + ".txt";
 			ThreadPool.QueueUserWorkItem(WriteToFile,new object[] { "Mac Address;Test Time;Test Date;Ping 8.8.8.8;Ping 8.8.4.4;Ping Default Gateway;Latency",_pingFile });
-			_speedTests.Add("Download Duration;File Size;Download Speed");
+			_speedTests.Add("Test Started;Download Duration;File Size;Download Speed");
 
             // Setting Execution State so the Sleep Mode wont Activate while Testing
             SetThreadExecutionState(EXECUTION_STATE.ES_CONTINUOUS | EXECUTION_STATE.ES_SYSTEM_REQUIRED);
@@ -214,7 +213,7 @@ namespace Neasure {
 				var fileInfo = new FileInfo(tempFile);
 				var speed = fileInfo.Length / sw.Elapsed.Seconds;
 
-				_speedTests.Add(sw.Elapsed + ";" + fileInfo.Length.ToString("N0") + ";" + speed.ToString("N0"));
+				_speedTests.Add(DateTime.Now.ToString("HH:mm:ss") + ";" + sw.Elapsed + ";" + fileInfo.Length.ToString("N0") + ";" + speed.ToString("N0"));
 			} catch (Exception ex) {
 				//TODO Make an Window that shows the Errors while the Test is running
 				ThreadPool.QueueUserWorkItem(WriteToFile,new object[] { ex.Message,"error.log" });
