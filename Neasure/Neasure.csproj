@@ -24,8 +24,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <SupportUrl>https://github.com/Sirlionfur/Neasure/issues</SupportUrl>
     <ProductName>Neasure</ProductName>
-    <ApplicationRevision>2</ApplicationRevision>
-    <ApplicationVersion>0.0.4.%2a</ApplicationVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>0.0.5.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
