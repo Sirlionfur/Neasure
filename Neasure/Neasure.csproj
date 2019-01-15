@@ -154,23 +154,23 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="About.cs">
+    <Compile Include="Forms\About.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="About.Designer.cs">
+    <Compile Include="Forms\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
     <Compile Include="Data.cs" />
-    <Compile Include="FirebaseForm.cs">
+    <Compile Include="Forms\FirebaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FirebaseForm.Designer.cs">
+    <Compile Include="Forms\FirebaseForm.Designer.cs">
       <DependentUpon>FirebaseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Main.cs">
+    <Compile Include="Forms\Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Main.Designer.cs">
+    <Compile Include="Forms\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -180,40 +180,40 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.de.resx</DependentUpon>
     </Compile>
-    <Compile Include="Result.cs">
+    <Compile Include="Forms\Result.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Result.Designer.cs">
+    <Compile Include="Forms\Result.Designer.cs">
       <DependentUpon>Result.cs</DependentUpon>
     </Compile>
-    <Compile Include="Status.cs">
+    <Compile Include="Forms\Status.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Status.Designer.cs">
+    <Compile Include="Forms\Status.Designer.cs">
       <DependentUpon>Status.cs</DependentUpon>
     </Compile>
-    <Compile Include="Test.cs">
+    <Compile Include="Forms\Test.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Test.Designer.cs">
+    <Compile Include="Forms\Test.Designer.cs">
       <DependentUpon>Test.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="About.de.resx">
+    <EmbeddedResource Include="Forms\About.de.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="About.resx">
+    <EmbeddedResource Include="Forms\About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FirebaseForm.de.resx">
+    <EmbeddedResource Include="Forms\FirebaseForm.de.resx">
       <DependentUpon>FirebaseForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FirebaseForm.resx">
+    <EmbeddedResource Include="Forms\FirebaseForm.resx">
       <DependentUpon>FirebaseForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Main.de.resx">
+    <EmbeddedResource Include="Forms\Main.de.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Main.resx">
+    <EmbeddedResource Include="Forms\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.de.resx">
@@ -230,22 +230,22 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Result.de.resx">
+    <EmbeddedResource Include="Forms\Result.de.resx">
       <DependentUpon>Result.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Result.resx">
+    <EmbeddedResource Include="Forms\Result.resx">
       <DependentUpon>Result.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Status.de.resx">
+    <EmbeddedResource Include="Forms\Status.de.resx">
       <DependentUpon>Status.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Status.resx">
+    <EmbeddedResource Include="Forms\Status.resx">
       <DependentUpon>Status.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Test.de.resx">
+    <EmbeddedResource Include="Forms\Test.de.resx">
       <DependentUpon>Test.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Test.resx">
+    <EmbeddedResource Include="Forms\Test.resx">
       <DependentUpon>Test.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="jan.ahlert%40icloud.com.pfx" />

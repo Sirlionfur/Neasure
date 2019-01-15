@@ -26,22 +26,10 @@ namespace Neasure {
                 });
 
                 // Upload Ping file to Bucket
-                var streamPing = File.Open(pingFile, FileMode.Open);
-                var fileUpload = new FirebaseStorage(_bucket, new FirebaseStorageOptions
-                    {
-                        AuthTokenAsyncFactory = () => Task.FromResult(auth.FirebaseToken),
-                        ThrowOnCancel = true
-                    }).Child("data").Child(auth.User.LocalId).Child("ping_" + auth.User.LocalId + ".txt").PutAsync(streamPing);
-                await fileUpload;
-                
+                UploadToBucket(pingFile, "ping_", auth);
+
                 // Upload Speed file to Bucket
-                var streamSpeed = File.Open(speedFile, FileMode.Open);
-                var speedUpload = new FirebaseStorage(_bucket, new FirebaseStorageOptions
-                {
-                    AuthTokenAsyncFactory = () => Task.FromResult(auth.FirebaseToken),
-                    ThrowOnCancel = true
-                }).Child("data").Child(auth.User.LocalId).Child("speed_" + auth.User.LocalId + ".txt").PutAsync(streamSpeed); 
-                await speedUpload;
+                UploadToBucket(speedFile, "speed_", auth);
 
                 // Upload Information to Database
 
@@ -52,13 +40,18 @@ namespace Neasure {
                     postalCode = postalCode,
                     ISP = isp,
                     type = type,
-                    speed = speed
+                    speed = speed,
+                    #if DEBUG
+                    debug = true
+                    #else
+                    debug = false
+                    #endif
                 };
 
                 await firebase.Child("data").Child(auth.User.LocalId).PostAsync(data);
 
                 // Write sent Data into File and upload to Firebase
-                using (var surveyWriter = File.AppendText("@survey_" + auth.User.LocalId))
+                using (var surveyWriter = File.AppendText("survey_" + auth.User.LocalId + ".txt"))
                 {
                     surveyWriter.WriteLine("Data Sent to Firebase: ");
                     surveyWriter.WriteLine("Country: " + country);
@@ -67,15 +60,14 @@ namespace Neasure {
                     surveyWriter.WriteLine("ISP: " + isp);
                     surveyWriter.WriteLine("Internet Type: " + type);
                     surveyWriter.WriteLine("Internet Speed: " + speed);
+                    #if DEBUG   
+                    surveyWriter.WriteLine("Warning: Result Created by Debug Build");
+                    #endif
+                    
                 }
 
-                var surveyFile = File.Open("@survey_" + auth.User.LocalId, FileMode.Open);
-                var surveyUpload = new FirebaseStorage(_bucket, new FirebaseStorageOptions
-                {
-                    AuthTokenAsyncFactory = () => Task.FromResult(auth.FirebaseToken),
-                    ThrowOnCancel = true
-                }).Child("data").Child(auth.User.LocalId).Child("speed_" + auth.User.LocalId + ".txt").PutAsync(surveyFile); 
-                await surveyUpload;
+                // Upload Survey to Bucket
+                UploadToBucket("survey_" + auth.User.LocalId + ".txt", "survey_", auth);
 
                 return 1;
             }
@@ -85,6 +77,17 @@ namespace Neasure {
                     MessageBoxIcon.Error);
                 return 0;
             }
+        }
+
+        private async void UploadToBucket(string file, string destination, FirebaseAuth auth)
+        {
+            var _file = File.Open(file, FileMode.Open);
+            var upload = new FirebaseStorage(_bucket, new FirebaseStorageOptions
+            {
+                AuthTokenAsyncFactory = () => Task.FromResult(auth.FirebaseToken),
+                ThrowOnCancel = true
+            }).Child("data").Child(auth.User.LocalId).Child(destination + auth.User.LocalId + ".txt").PutAsync(_file);
+            await upload;
         }
 	}
 }

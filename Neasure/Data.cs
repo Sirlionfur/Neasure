@@ -8,5 +8,6 @@
         public string ISP { get; set; }
         public string type { get; set; }
         public string speed { get; set; }
+        public bool debug { get; set; }
     }
 }
