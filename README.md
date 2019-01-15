@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/Sirlionfur/Neasure.svg?branch=master)](https://travis-ci.org/Sirlionfur/Neasure)
 A simple Network Measurement utility
 
 ### This is still in Development
