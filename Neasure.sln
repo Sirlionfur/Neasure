@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2042
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28407.52
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neasure", "Neasure\Neasure.csproj", "{913F1E90-A7AC-47A6-A08E-9F33569D1B66}"
 EndProject
@@ -27,6 +27,12 @@ Global
 		{913F1E90-A7AC-47A6-A08E-9F33569D1B66}.Release|x64.Build.0 = Release|Any CPU
 		{913F1E90-A7AC-47A6-A08E-9F33569D1B66}.Release|x86.ActiveCfg = Release|Any CPU
 		{913F1E90-A7AC-47A6-A08E-9F33569D1B66}.Release|x86.Build.0 = Release|Any CPU
+		{A5957706-39B8-452B-8BEB-1DCD8DD1029B}.Debug|Any CPU.ActiveCfg = Debug
+		{A5957706-39B8-452B-8BEB-1DCD8DD1029B}.Debug|x64.ActiveCfg = Debug
+		{A5957706-39B8-452B-8BEB-1DCD8DD1029B}.Debug|x86.ActiveCfg = Debug
+		{A5957706-39B8-452B-8BEB-1DCD8DD1029B}.Release|Any CPU.ActiveCfg = Release
+		{A5957706-39B8-452B-8BEB-1DCD8DD1029B}.Release|x64.ActiveCfg = Release
+		{A5957706-39B8-452B-8BEB-1DCD8DD1029B}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,7 +44,7 @@ Global
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = PrefixedHierarchical
-		$0.TextStylePolicy = $2
+		$0.TextStylePolicy = $9
 		$2.FileWidth = 80
 		$2.scope = text/x-csharp
 		$0.CSharpFormattingPolicy = $3
@@ -60,25 +66,19 @@ Global
 		$3.SpacingAfterMethodDeclarationName = True
 		$3.scope = text/x-csharp
 		$3.SpaceAfterComma = False
-		$0.TextStylePolicy = $4
 		$4.FileWidth = 80
 		$4.TabsToSpaces = True
 		$4.scope = text/plain
-		$0.TextStylePolicy = $5
 		$5.inheritsSet = null
 		$5.scope = text/microsoft-resx
-		$0.XmlFormattingPolicy = $6
+		$0.XmlFormattingPolicy = $10
 		$6.inheritsSet = null
 		$6.scope = text/microsoft-resx
-		$0.TextStylePolicy = $7
 		$7.inheritsSet = null
 		$7.scope = application/xml
-		$0.XmlFormattingPolicy = $8
 		$8.scope = application/xml
-		$0.TextStylePolicy = $9
 		$9.inheritsSet = null
 		$9.scope = application/config+xml
-		$0.XmlFormattingPolicy = $10
 		$10.inheritsSet = null
 		$10.scope = application/config+xml
 		$0.StandardHeader = $11
