@@ -41,15 +41,20 @@ namespace Neasure {
 
 		private int _timeMiliseconds;
 
+        private string documentsFolder;
+
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        public static extern EXECUTION_STATE SetThreadExecutionState(EXECUTION_STATE esFlags);
+        private static extern EXECUTION_STATE SetThreadExecutionState(EXECUTION_STATE esFlags);
 
 		public Test (int pingInterval,int mode)
 		{
 			InitializeComponent();
 
-			// Set the Background Workers Settings
-			backgroundWorkerPing.DoWork += backgroundWorkerPing_DoWork;
+            documentsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).ToString();
+            Directory.CreateDirectory(documentsFolder + "\\Neasure");
+
+            // Set the Background Workers Settings
+            backgroundWorkerPing.DoWork += backgroundWorkerPing_DoWork;
 			backgroundWorkerPing.WorkerReportsProgress = true;
 			backgroundWorkerPing.WorkerSupportsCancellation = true;
 
@@ -108,15 +113,20 @@ namespace Neasure {
 			_timer.Elapsed += HandleTimer;
 			_timer.Enabled = true;
 
-			// Initialize Speed Test Timer
-			_speedTestTimer = new Timer(900000) { AutoReset = true };
-			_speedTestTimer.Elapsed += HandleSpeedTimer;
+            // Initialize Speed Test Timer
+            #if DEBUG
+            _speedTestTimer = new Timer(10000) { AutoReset = true };
+            #else
+            _speedTestTimer = new Timer(900000) { AutoReset = true };
+            #endif
+
+            _speedTestTimer.Elapsed += HandleSpeedTimer;
 			_speedTestTimer.Enabled = true;
 
 			// Get Date and Time, Create new File and Write the Header
 			_timeTestStartet = DateTime.Now;
-			_pingFile = @"result_" + _timeTestStartet.ToString("yyyyMMddT_HH-mm-ss") + ".txt";
-            _speedFile = @"speed_" + _timeTestStartet.ToString("yyyyMMddT_HH-mm-ss") + ".txt";
+			_pingFile = documentsFolder + "\\Neasure\\result_" + _timeTestStartet.ToString("yyyyMMddT_HH-mm-ss") + ".txt";
+            _speedFile = documentsFolder + "\\Neasure\\speed_" + _timeTestStartet.ToString("yyyyMMddT_HH-mm-ss") + ".txt";
 			ThreadPool.QueueUserWorkItem(WriteToFile,new object[] { "Mac Address;Test Time;Test Date;Ping 8.8.8.8;Ping 8.8.4.4;Ping Default Gateway;Latency",_pingFile });
 			_speedTests.Add("Test Started;Download Duration;File Size;Download Speed");
 

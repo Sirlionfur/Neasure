@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Neasure")]
 [assembly: AssemblyDescription("A Network Measurement Tool")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Fractured Universe")]
 [assembly: AssemblyProduct("Neasure")]
 [assembly: AssemblyCopyright("Neasure © by Sirlionfur")]
 [assembly: AssemblyTrademark("")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // Sie können alle Werte angeben oder Standardwerte für die Build- und Revisionsnummern verwenden,
 // übernehmen, indem Sie "*" eingeben:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.0.5.0")]
-[assembly: AssemblyFileVersion("0.0.5.0")]
+[assembly: AssemblyVersion("0.0.7.0")]
+[assembly: AssemblyFileVersion("0.0.7.0")]

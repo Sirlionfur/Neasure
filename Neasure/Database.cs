@@ -12,9 +12,12 @@ namespace Neasure {
 	public class Database
     {
         private string _bucket = "neasure-5ed3e.appspot.com";
+        private string documentsFolder;
 
         public async Task<int> Send(string country, string city, string postalCode, string isp, string type, string speed, string pingFile, string speedFile)
 		{
+            documentsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).ToString();
+
             try
             {
                 // Authenticate Anonymously with Firebase
@@ -51,7 +54,7 @@ namespace Neasure {
                 await firebase.Child("data").Child(auth.User.LocalId).PostAsync(data);
 
                 // Write sent Data into File and upload to Firebase
-                using (var surveyWriter = File.AppendText("survey_" + auth.User.LocalId + ".txt"))
+                using (var surveyWriter = File.AppendText(documentsFolder + "\\Neasure\\survey_" + auth.User.LocalId + ".txt"))
                 {
                     surveyWriter.WriteLine("Data Sent to Firebase: ");
                     surveyWriter.WriteLine("Country: " + country);
