@@ -182,7 +182,7 @@ namespace Neasure {
 					Thread.Sleep(_pingInterval);
 				} catch (Exception ex) {
 					//TODO Make an Window that shows the Errors while the Test is running
-					ThreadPool.QueueUserWorkItem(WriteToFile,new object[] { ex.Message,"error.log" });
+					ThreadPool.QueueUserWorkItem(WriteToFile,new object[] { ex.Message, documentsFolder + "\\error.log" });
 				}
 			}
 		}
@@ -214,7 +214,7 @@ namespace Neasure {
 				// Create new Temporary File and Download File while stopping time
 				var client = new WebClient();
 				var sw = new Stopwatch();
-				const string tempFile = "temp.tmp";
+				string tempFile = documentsFolder + "\\temp.tmp";
 
 				sw.Start();
 				client.DownloadFile("https://speed.hetzner.de/100MB.bin",tempFile);
@@ -223,17 +223,18 @@ namespace Neasure {
 				var fileInfo = new FileInfo(tempFile);
 				var speed = fileInfo.Length / sw.Elapsed.Seconds;
 
+                // The Result is in KiloBytes per Second!
 				_speedTests.Add(DateTime.Now.ToString("HH:mm:ss") + ";" + sw.Elapsed + ";" + fileInfo.Length.ToString("N0") + ";" + speed.ToString("N0"));
 			} catch (Exception ex) {
 				//TODO Make an Window that shows the Errors while the Test is running
-				ThreadPool.QueueUserWorkItem(WriteToFile,new object[] { ex.Message,"error.log" });
+				ThreadPool.QueueUserWorkItem(WriteToFile,new object[] { ex.Message, documentsFolder + "\\error.log" });
 			}
 		}
 
 		private void backgroundWorkerSpeedTest_RunWorkerCompleted (object sender,RunWorkerCompletedEventArgs e)
 		{
 			// Delete Temporary File
-			File.Delete("temp.tmp");
+			File.Delete(documentsFolder + "\\temp.tmp");
 		}
 
 		// The File Writer Function working in the Background

@@ -70,7 +70,7 @@ namespace Neasure {
                 }
 
                 // Upload Survey to Bucket
-                UploadToBucket("survey_" + auth.User.LocalId + ".txt", "survey_", auth);
+                UploadToBucket(documentsFolder + "\\Neasure\\survey_" + auth.User.LocalId + ".txt", "survey_", auth);
 
                 return 1;
             }
