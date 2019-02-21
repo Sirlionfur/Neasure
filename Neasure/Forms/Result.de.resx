@@ -205,14 +205,11 @@
   <data name="lblResult.Text" xml:space="preserve">
     <value>Test Ergebnis</value>
   </data>
-  <data name="lblResultsWhere.Location" type="System.Drawing.Point, System.Drawing">
-    <value>249, 163</value>
-  </data>
   <data name="lblResultsWhere.Size" type="System.Drawing.Size, System.Drawing">
-    <value>339, 13</value>
+    <value>293, 13</value>
   </data>
   <data name="lblResultsWhere.Text" xml:space="preserve">
-    <value>Deine Ergenbnisse wurden im Neasure Stammverzeichnis gespeichert.</value>
+    <value>Ihre Ergebnisse wurden in Dokumente/Neasure gespeichert.</value>
   </data>
   <data name="btnFormOpen.Text" xml:space="preserve">
     <value>Daten nach Firebase senden (Anonym)</value>
